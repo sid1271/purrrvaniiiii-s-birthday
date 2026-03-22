@@ -2,22 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff0f3; color: #ff4d6d; text-align: center; padding: 50px; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
-        h1 { font-size: 2rem; }
-        p { color: #555; line-height: 1.6; }
-        .btn { background: #ff4d6d; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 20px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Parvani ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="card">
-        <h1>Hi Parvani! ❤️</h1>
-        <p>Something special is coming on April 2nd.</p>
-        <p>I'm building this just for you, so stay tuned!</p>
-        <a href="#" class="btn">Click for a Surprise (Coming Soon)</a>
+
+    <div id="screen1" class="screen active">
+        <div class="heart-trigger" onclick="goToScreen2()">❤️</div>
     </div>
+
+    <div id="screen2" class="screen">
+        <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
+        <div class="cat-decoration">🐱✨</div>
+        <button class="next-btn" onclick="goToScreen3()">Open your letters</button>
+    </div>
+
+    <div id="screen3" class="screen">
+        <div id="letter-container" class="letter-wall"></div>
+        <button id="quiz-trigger" class="next-btn hidden" onclick="goToScreen4()">Now, a quick quiz!</button>
+    </div>
+
+    <div id="screen4" class="screen">
+        <form id="birthday-form">
+            <div id="form-content"></div>
+            <button type="button" class="submit-btn" onclick="submitForm()">Finish ❤️</button>
+        </form>
+    </div>
+
+  <div id="screen5" class="screen">
+    <div class="night-sky">
+        <div class="moon-visual-layer">
+            <div id="moon-message">Scroll to see the moon grow...</div>
+            <div class="moon-wrapper">
+                <img src="assets/moon.png" class="glowing-moon">
+                <div class="moon-shadow"></div> 
+            </div>
+            <div id="final-center-text" class="hidden">
+                <h1>Forever My Full Moon.</h1>
+                <p>I Love You, Parvani.</p>
+            </div>
+        </div>
+
+        <div id="moon-scroll-trigger">
+            <div style="height: 300vh;"></div> </div>
+        
+        <div id="star-field"></div>
+    </div>
+</div>
+
+    <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeLetter()">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+
+    <form id="formspree-form" action="https://formspree.io/f/mnjgywkz" method="POST" style="display:none;">
+        <input type="hidden" name="responses" id="hidden-responses">
+    </form>
+
+    <script src="script.js"></script>
 </body>
 </html>

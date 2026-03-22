@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap');
+
+:root {
+  --main-bg: #FFF0F3;
+  --accent-pink: #FFB3C1;
+  --text-dark: #594145;
+}
+
+body, html {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  overflow: hidden; 
+  font-family: 'Quicksand', sans-serif;
+  color: var(--text-dark);
+  background-color: #000;
+}
+
+.screen {
+  display: none; height: 100vh; width: 100vw;
+  position: absolute; top: 0; left: 0;
+  flex-direction: column; align-items: center; justify-content: center;
+  padding: 20px; box-sizing: border-box; text-align: center;
+  background-image: url('assets/background.png');
+  background-size: cover; background-position: center;
+}
+
+.screen.active { display: flex; }
+
+.heart-trigger { font-size: 100px; cursor: pointer; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+.fade-in-text { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4d6d; animation: fadeIn 2s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.letter-wall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; max-width: 350px; }
+.letter-pop { font-size: 32px; animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+@keyframes bounceIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+form#birthday-form { width: 100%; max-width: 320px; max-height: 70vh; overflow-y: auto; text-align: left; }
+.form-group input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--accent-pink); background: rgba(255, 255, 255, 0.8); }
+
+.next-btn, .submit-btn { background-color: var(--accent-pink); border: none; padding: 15px 30px; color: white; border-radius: 50px; font-weight: 700; margin-top: 20px; cursor: pointer; }
+.hidden { display: none !important; }
+
+/* Modal */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.modal-active { opacity: 1; pointer-events: auto; }
+.modal-content { background: #fff; padding: 30px; border-radius: 15px; width: 80%; max-width: 300px; text-align: center; position: relative; transform: scale(0.8); transition: transform 0.3s ease; }
+.modal-active .modal-content { transform: scale(1); }
+.close-modal { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; }
+
+/* Finale */
+.night-sky { background: radial-gradient(circle at center, #1a1a2e 0%, #0d0d15 50%, #000000 100%); width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+#star-field { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)); background-repeat: repeat; background-size: 200px 200px; opacity: 0.5; }
+
+.moon-visual-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5; pointer-events: none; }
+#moon-scroll-trigger { width: 100%; height: 100vh; overflow-y: scroll; position: relative; z-index: 10; -webkit-overflow-scrolling: touch; }
+#moon-message { position: absolute; top: 15%; color: white; font-family: 'Dancing Script', cursive; font-size: 1.8rem; text-align: center; width: 80%; transition: opacity 0.5s ease; }
+
+.moon-wrapper { position: relative; width: 280px; height: 280px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+.glowing-moon { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); display: block; border-radius: 50%; transition: all 1.5s ease; }
+.moon-shadow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); border-radius: 50%; transform: translateX(-100%); z-index: 2; }
+
+.glowing-moon-finale { 
+    opacity: 1 !important; 
+    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 45px #ffccd5) drop-shadow(0 0 80px #ffb3c1); 
+}
+
+#final-center-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: 'Dancing Script', cursive; font-size: 2.2rem; text-align: center; z-index: 10; width: 80%; }
