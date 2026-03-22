@@ -37,7 +37,7 @@ body, html {
 @keyframes bounceIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
 form#birthday-form { width: 100%; max-width: 320px; max-height: 70vh; overflow-y: auto; text-align: left; }
-.form-group input { width: 90%; padding: 12px; border-radius: 10px; border: 1px solid var(--accent-pink); background: rgba(255, 255, 255, 0.8); }
+.form-group input { width: 75%; padding: 12px; border-radius: 10px; border: 1px solid var(--accent-pink); background: rgba(255, 255, 255, 0.8); }
 
 .next-btn, .submit-btn { background-color: var(--accent-pink); border: none; padding: 15px 30px; color: white; border-radius: 50px; font-weight: 700; margin-top: 20px; cursor: pointer; }
 .hidden { display: none !important; }
