@@ -11,26 +11,24 @@
 <body>
 
     <div id="screen1" class="screen active">
-        <div class="heart-trigger" onclick="goToBirthdayWish()">❤️</div>
+        <div class="heart-trigger" onclick="switchScreen('screen1', 'screen2')">❤️</div>
         <p class="tap-hint">Tap the heart to begin...</p>
     </div>
 
     <div id="screen2" class="screen">
         <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
         <div class="cat-decoration">🐱✨</div>
-        <button class="next-btn" onclick="goToMapAnimation()">See a Surprise ✨</button>
+        <button class="next-btn" onclick="playMapAnimation()">See a Surprise ✨</button>
     </div>
 
     <div id="screen-map" class="screen">
-        <div class="map-wrapper-box">
-            <div class="location-container">
-                <span class="loc-tag">Siddhant</span>
-                <span class="loc-tag">Parvani</span>
+        <div class="media-container">
+            <video id="map-video" width="100%" height="auto" muted playsinline>
+                <source src="assets/map_animation.mp4" type="video/mp4">
+                Your browser does not support the video.
+            </video>
             </div>
-            <div class="map-path"></div>
-            <div id="traveler-emoji">🏃‍♂️</div>
-        </div>
-        <p id="map-status">Starting the journey...</p>
+        <button id="skip-map" class="next-btn hidden" onclick="goToCakeScreen()">Continue to Cake 🎂</button>
     </div>
 
     <div id="screen-cake" class="screen">
@@ -46,20 +44,13 @@
         <div id="interaction-zone">
             <button id="blow-btn" class="next-btn" onclick="blowCandles()">Blow out the candles!</button>
             <button id="cut-btn" class="next-btn hidden" onclick="cutCake()">Cut the cake! 🔪</button>
-            
             <div id="avatar-zone" class="hidden">
                 <div class="avatar-box" onclick="feedPerson('siddhant')">
-                    <div class="img-fallback">
-                        <img src="assets/siddhant.png" class="avatar" onerror="this.style.display='none'">
-                        <span class="emoji-placeholder">👦</span>
-                    </div>
+                    <img src="assets/siddhant.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=S&background=FFB3C1&color=fff'">
                     <div id="bubble-sid" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
                 </div>
                 <div class="avatar-box" onclick="feedPerson('parvani')">
-                    <div class="img-fallback">
-                        <img src="assets/parvani.png" class="avatar" onerror="this.style.display='none'">
-                        <span class="emoji-placeholder">👸</span>
-                    </div>
+                    <img src="assets/parvani.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=P&background=FFB3C1&color=fff'">
                     <div id="bubble-par" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
                 </div>
             </div>
@@ -69,7 +60,7 @@
 
     <div id="screen3" class="screen">
         <div id="letter-container" class="letter-wall"></div>
-        <button id="quiz-trigger" class="next-btn hidden" onclick="goToQuiz()">Now, a quick quiz!</button>
+        <button id="quiz-trigger" class="next-btn hidden" onclick="switchScreen('screen3', 'screen4'); generateForm();">Now, a quick quiz!</button>
     </div>
 
     <div id="screen4" class="screen">
@@ -84,7 +75,7 @@
             <div class="moon-visual-layer">
                 <div id="moon-message">Scroll to see the moon grow...</div>
                 <div class="moon-wrapper">
-                    <img src="assets/moon.png" class="glowing-moon">
+                    <img src="assets/moon.png" class="glowing-moon" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg'">
                     <div class="moon-shadow"></div> 
                 </div>
                 <div id="final-center-text" class="hidden">
