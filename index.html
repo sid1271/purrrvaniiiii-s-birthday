@@ -6,6 +6,7 @@
     <title>For Parvani ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -31,26 +32,27 @@
         </form>
     </div>
 
-  <div id="screen5" class="screen">
-    <div class="night-sky">
-        <div class="moon-visual-layer">
-            <div id="moon-message">Scroll to see the moon grow...</div>
-            <div class="moon-wrapper">
-                <img src="assets/moon.png" class="glowing-moon">
-                <div class="moon-shadow"></div> 
+    <div id="screen5" class="screen">
+        <div class="night-sky">
+            <div class="moon-visual-layer">
+                <div id="moon-message">Scroll to see the moon grow...</div>
+                <div class="moon-wrapper">
+                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
+                    <div class="moon-shadow"></div> 
+                </div>
+                <div id="final-center-text" class="hidden">
+                    <h1>Forever My Full Moon.</h1>
+                    <p>I Love You, Parvani.</p>
+                </div>
             </div>
-            <div id="final-center-text" class="hidden">
-                <h1>Forever My Full Moon.</h1>
-                <p>I Love You, Parvani.</p>
-            </div>
-        </div>
 
-        <div id="moon-scroll-trigger">
-            <div style="height: 300vh;"></div> </div>
-        
-        <div id="star-field"></div>
+            <div id="moon-scroll-trigger">
+                <div style="height: 300vh;"></div> 
+            </div>
+            
+            <div id="star-field"></div>
+        </div>
     </div>
-</div>
 
     <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -58,10 +60,6 @@
             <div id="modal-text"></div>
         </div>
     </div>
-
-    <form id="formspree-form" action="https://formspree.io/f/mnjgywkz" method="POST" style="display:none;">
-        <input type="hidden" name="responses" id="hidden-responses">
-    </form>
 
     <script src="script.js"></script>
 </body>
