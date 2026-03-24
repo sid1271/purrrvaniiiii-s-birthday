@@ -19,6 +19,19 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 .candle::after { content: ''; position: absolute; top: -8px; left: -1px; width: 6px; height: 10px; background: orange; border-radius: 50%; box-shadow: 0 0 5px orange; }
 .candle.out::after { display: none; }
 #cake-slice { font-size: 80px; animation: bounce 1s infinite; cursor: pointer; }
+.tap-hint {
+    color: white;
+    margin-top: 20px;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 1px;
+    animation: fadeIn 2s infinite alternate;
+}
+
+/* Ensure screens have a high z-index when active */
+.screen.active {
+    display: flex;
+    z-index: 100;
+}
 
 /* Avatar Zone */
 #avatar-zone { display: flex; justify-content: space-around; width: 100%; margin-top: 20px; }
