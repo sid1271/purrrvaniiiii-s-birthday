@@ -1,32 +1,97 @@
-<div id="screen1-5" class="screen">
-    <div class="cake-container">
-        <div id="cake-display" class="cake">
-            <div class="candles" id="candles-group">
-                <div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div>
-                <div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div>
-                <div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div>
-                <div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div>
-            </div>
-            <div class="cake-body"></div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Parvani ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
 
-        <button id="blow-button" class="next-btn" onclick="blowCandles()">Blow out the candles! 🎂</button>
-        
-        <div id="knife" class="hidden" draggable="true" ondragstart="drag(event)">🔪</div>
-        
-        <div id="cake-slice" class="hidden" draggable="true" ondragstart="drag(event)">🍰</div>
-
-        <div id="avatar-container" class="hidden">
-            <div class="avatar-wrapper">
-                <img src="assets/siddhant.png" id="siddhant-avatar" class="avatar" ondrop="drop(event, 'siddhant')" ondragover="allowDrop(event)">
-                <div id="bubble-siddhant" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
-            </div>
-            <div class="avatar-wrapper">
-                <img src="assets/parvani.png" id="parvani-avatar" class="avatar" ondrop="drop(event, 'parvani')" ondragover="allowDrop(event)">
-                <div id="bubble-parvani" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
-            </div>
-        </div>
-
-        <button id="to-letters-btn" class="next-btn hidden" onclick="goToScreen2()">Move to Letters ✨</button>
+    <div id="screen1" class="screen active">
+        <div class="heart-trigger" onclick="goToCakeScreen()">❤️</div>
+        <p style="color: white; margin-top: 20px;">Tap the heart to begin...</p>
     </div>
-</div>
+
+    <div id="screen-cake" class="screen">
+        <h2 class="fade-in-text">Make a wish! 🎂</h2>
+        
+        <div class="cake-area">
+            <div id="cake-main" class="cake">
+                <div id="candle-container" class="candles">
+                    </div>
+                <div class="cake-top"></div>
+                <div class="cake-bottom"></div>
+            </div>
+            <div id="cake-slice" class="hidden">🍰</div>
+        </div>
+
+        <div id="interaction-zone">
+            <button id="blow-btn" class="next-btn" onclick="blowCandles()">Blow out the candles!</button>
+            <button id="cut-btn" class="next-btn hidden" onclick="cutCake()">Cut the cake! 🔪</button>
+            
+            <div id="avatar-zone" class="hidden">
+                <div class="avatar-box" onclick="feedPerson('siddhant')">
+                    <img src="assets/siddhant.png" class="avatar" alt="Siddhant">
+                    <div id="bubble-sid" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
+                </div>
+                <div class="avatar-box" onclick="feedPerson('parvani')">
+                    <img src="assets/parvani.png" class="avatar" alt="Parvani">
+                    <div id="bubble-par" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
+                </div>
+            </div>
+        </div>
+
+        <button id="to-letters-btn" class="next-btn hidden" onclick="goToScreen2()">Open your letters ✨</button>
+    </div>
+
+    <div id="screen2" class="screen">
+        <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
+        <div class="cat-decoration">🐱✨</div>
+        <button class="next-btn" onclick="goToScreen3()">Read your 19 letters</button>
+    </div>
+
+    <div id="screen3" class="screen">
+        <div id="letter-container" class="letter-wall"></div>
+        <button id="quiz-trigger" class="next-btn hidden" onclick="goToScreen4()">Now, a quick quiz!</button>
+    </div>
+
+    <div id="screen4" class="screen">
+        <form id="birthday-form">
+            <div id="form-content"></div>
+            <button type="button" class="submit-btn" onclick="submitForm()">Finish ❤️</button>
+        </form>
+    </div>
+
+    <div id="screen5" class="screen">
+        <div class="night-sky">
+            <div class="moon-visual-layer">
+                <div id="moon-message">Scroll to see the moon grow...</div>
+                <div class="moon-wrapper">
+                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
+                    <div class="moon-shadow"></div> 
+                </div>
+                <div id="final-center-text" class="hidden">
+                    <h1>Forever My Full Moon.</h1>
+                    <p>I Love You, Parvani.</p>
+                </div>
+            </div>
+            <div id="moon-scroll-trigger">
+                <div style="height: 300vh;"></div> 
+            </div>
+            <div id="star-field"></div>
+        </div>
+    </div>
+
+    <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeLetter()">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
