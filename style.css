@@ -19,15 +19,23 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 .candle::after { content: ''; position: absolute; top: -8px; left: -1px; width: 6px; height: 10px; background: orange; border-radius: 50%; box-shadow: 0 0 5px orange; }
 .candle.out::after { display: none; }
 #cake-slice { font-size: 80px; animation: bounce 1s infinite; cursor: pointer; }
+/* Helper Classes & Hints */
 .tap-hint {
     color: white;
     margin-top: 20px;
     font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
     letter-spacing: 1px;
-    animation: fadeIn 2s infinite alternate;
+    opacity: 0.8;
+    animation: fadeInOut 2s infinite alternate;
 }
 
-/* Ensure screens have a high z-index when active */
+@keyframes fadeInOut {
+    from { opacity: 0.3; }
+    to { opacity: 0.9; }
+}
+
+/* Ensure active screens are always on top */
 .screen.active {
     display: flex;
     z-index: 100;
