@@ -1,50 +1,56 @@
 const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz"; 
 
 const envelopeMessages = [
-    "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! Keep that beautiful smile on your face, and... read on. :) ❤️",
-    "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, like you always do, and here we finally are. Even if it’s only virtually for now, I’m just glad I get to be 'with' you on your big day. 🥳",
-    "I honestly don’t know how we do it, but I’ve really started to cherish our calls and those endless late-night talks. Even though we clearly have the most 'disturbed' sleep cycles in the world, I’d say the conversations more than make up for the exhaustion. 🥰",
-    "For someone with such elite music taste, I hope you know the pressure is on! Seriously, never stop sending me songs. There's nothing I'd love more than discovering a new song and knowing it’s 'ours' from the first note. 🎵❤️",
-    "I honestly never thought I’d be someone who looks forward to eating oats. The love and care you pour into those yogurt and oats makes it better than any fancy dish I’ve ever tasted. Seriously, I’d choose it over anything else, simply because you made it. 🥣✨",
-    "I know you’re always convinced your hair looks like a mess, but honestly? It’s one of my favourite things about you. Maybe those glasses of yours are currently sitting on a table instead of your face! 😂 Trust my 10/10 vision on this one. 😌",
-    "I honestly can’t wrap my head around how you’re so incredibly good at everything you do. Looking back, I realize I made a huge mistake, I should’ve flooded you with sketchbooks so I could see even more of your art. 🤦‍♂️",
-    "Okay, seriously... you have to tell me the secret to those biceps! I’m over here trying my best, and I’m still nowhere near your level. Steroids hai ki genetisss, jo bhi hai, it’s working. I'm your #1 fan. 💪",
-    "Just so we’re clear, I am not changing my wallpaper. If I swap it out, I lose my official Certified Lover Boy status, right? That being said... I need an upgrade soon. You really are my favorite view. ❤️",
-    "I really wish more people could see what I see. It honestly baffles me when anyone thinks you're 'mean'—they must be completely clueless. Not everybody has a heart like yours. 🥰",
-    "I don’t think I can ever fully explain how much I value the way you look out for me. Whether it’s you making oats for me, or just listening to my faltu ki baatein, I feel so incredibly cared for. Best toh tum ho hi 😇",
-    "Consider this a weekly staple: the Very Berry Sundae is officially our Sunday dessert tradition from now on. No negotiations! 🍨 And meals with you have exactly zero calories. ❤️",
-    "I have a confession to make: Whenever I act like I’m 'mad' at you for playing games, it’s a total lie. I’m just secretly jealous because I can’t play half as well as you do. Keep winning spectator. 😙",
-    "I’ve finally figured out your secret. The only reason you can handle so much spice is because you’re so naturally sweet, it just balances everything out perfectly. Meanwhile, I'm already a little too hot-headed! 🌶️🍦",
-    "I might be a lazy, sleepy koala most of the time, but if there’s one thing I’m wide awake for, it’s being proud of you. I’m so lucky to be with a leopard who is as smart and attractive as you are. 🐨🐆❤️",
-    "I honestly have the worst sleep control mechanism ever. As soon as nighttime hits, my brain apparently decides its work is done, and I start saying the most random things! Sikha do mujhe bhi? 😴🌙",
-    "Look, if you ever feel the sudden urge to block me, DELETE kar do uss thought ko. Because I don't know the way to Room 307 by pigeon! So for the sake of my sanity, keep the lines open. 😂",
-    "Dekho, Princess toh tum ho, isme koi doubt hi nahi hai. Aur rahi baat efforts ki, toh tum best hi deserve karti ho. Kabhi kabhi mujhe sach mein lagta hai ki main thoda kam hi kar raha hoon... Mere liye toh tum hi important ho :))))",
-    "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Honestly, I know one thing for sure: You’re the best. Happy 19th Birthday, Princess! ❤️"
+    "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! ❤️",
+    "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, and here we are. I’m just glad I get to be 'with' you. 🥳",
+    "I've really started to cherish our calls and those endless late-night talks. Even though we clearly have the most 'disturbed' sleep cycles, talking to you is the highlight of my day. 🥰",
+    "For someone with such elite music taste, the pressure is on! Never stop sending me songs. I love discovering new music and knowing it’s 'ours' from the first note. 🎵❤️",
+    "I never thought I’d be someone who looks forward to eating oats. But the love and care you pour into them makes it better than any fancy dish. 🥣✨",
+    "I know you think your hair is a mess, but honestly? It’s one of my favorite things about you. Just trust my 10/10 vision on this one—you look incredible. 😌",
+    "I honestly can’t wrap my head around how you’re so good at everything. I should’ve flooded you with sketchbooks to see even more of your art. Pink sketch pen is coming soon! 🤦‍♂️",
+    "Seriously... tell me the secret to those biceps! I’m trying my best, and I’m still nowhere near your level. I'm your #1 fan. 💪",
+    "I am not changing my wallpaper. If I swap it out, I lose my 'Certified Lover Boy' status. You really are my favorite view. ❤️",
+    "It baffles me when anyone thinks you're 'mean'—they must be clueless. They haven’t seen the sweet, forgiving, and caring side of you that I see. 🥰",
+    "I value the way you look out for me—making oats, listening to my 'faltu ki baatein,' or checking if I've eaten. I don't take it for granted. Best toh tum ho hi 😇",
+    "Decree: Very Berry Sundae is our Sunday tradition. And it has zero calories because it's eaten with you. Science! 🍨❤️",
+    "I act mad when you play games because I'm jealous I can't play that well! You're officially the pro, and I'm just your spectator. 🎮🔥",
+    "You can handle spice because you're so sweet—it balances out. I can't handle it because I'm already hot-headed! Perfect balance. 🌶️🍦",
+    "I might be a lazy koala, but I’m proud to be with a leopard who is smart, attractive, and the best in the game. I’ll happily hang on my branch while you conquer everything. 🐨🐆❤️",
+    "I have the worst sleep control. Night hits and I start saying random things! Sikha do mujhe bhi, how do you stay so fresh? 😴🌙",
+    "If you ever want to block me, DELETE that thought. I don't know the way to Room 307 via pigeon! Let's keep the digital lines open. 😂🕊️",
+    "Princess toh tum ho. I feel like I do too little sometimes, but I'll keep increasing the effort. Log kya kahenge? Unse humein kya! ❤️",
+    "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
+const moonMessages = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
+
 function switchScreen(oldId, newId) {
-    document.getElementById(oldId).classList.remove('active');
-    document.getElementById(newId).classList.add('active');
-    if (newId === 'screen5') initMoonScroll();
+    const old = document.getElementById(oldId);
+    const next = document.getElementById(newId);
+    if(old && next) {
+        old.classList.remove('active');
+        next.classList.add('active');
+        if(newId === 'screen5') initMoonScroll();
+    }
 }
 
-function goToBirthdayWish() { switchScreen('screen1', 'screen2'); }
-
-function goToMapAnimation() {
+// 1. Play Map Animation
+function playMapAnimation() {
     switchScreen('screen2', 'screen-map');
-    const traveler = document.getElementById('traveler-emoji');
-    const status = document.getElementById('map-status');
-    
-    setTimeout(() => {
-        traveler.style.left = '85%';
-        status.innerText = "Crossing the distance... ✈️";
+    const video = document.getElementById('map-video');
+    if (video) {
+        video.play().catch(e => console.log("Video auto-play blocked, showing button."));
+        // Show skip button after 4 seconds (length of a typical travel clip)
         setTimeout(() => {
-            status.innerText = "I'm finally here! ❤️";
-            setTimeout(() => goToCakeScreen(), 1500);
-        }, 3000);
-    }, 500);
+            document.getElementById('skip-map').classList.remove('hidden');
+        }, 4000);
+    } else {
+        // Fallback if video tag is missing
+        goToCakeScreen();
+    }
 }
 
+// 2. Setup Cake
 function goToCakeScreen() {
     switchScreen('screen-map', 'screen-cake');
     const container = document.getElementById('candle-container');
@@ -81,12 +87,9 @@ function feedPerson(person) {
     }
 }
 
-function goToLetters() { 
-    switchScreen('screen-cake', 'screen3'); 
-    revealLetters(); 
-}
-
-function revealLetters() {
+// 3. Letters Reveal
+function goToLetters() {
+    switchScreen('screen-cake', 'screen3');
     const container = document.getElementById('letter-container');
     container.innerHTML = ''; 
     envelopeMessages.forEach((msg, i) => {
@@ -116,11 +119,10 @@ function closeLetter() {
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
-function goToQuiz() { switchScreen('screen3', 'screen4'); generateForm(); }
-
+// 4. Quiz & Finale
 function generateForm() {
     const formDiv = document.getElementById('form-content');
-    const questions = ["Favorite memory?", "First date?", "What you love about Bangalore?", "Favorite cat breed?", "Favorite thing about us?"];
+    const questions = ["Favorite memory?", "First date location?", "Best thing about Bangalore?", "Favorite cat breed?", "How much do you love me?"];
     formDiv.innerHTML = ''; 
     questions.forEach((q, i) => {
         formDiv.innerHTML += `<div class="form-group"><p>${i+1}. ${q}</p><input type="text" name="q${i+1}" required></div>`;
@@ -140,7 +142,6 @@ function initMoonScroll() {
     const moonImg = document.querySelector('.glowing-moon');
     const msgDisplay = document.getElementById('moon-message');
     const finalCenter = document.getElementById('final-center-text');
-    const moonMessages = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
 
     scrollTrigger.addEventListener('scroll', () => {
         let scrollPercent = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
