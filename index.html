@@ -21,16 +21,17 @@
         <button class="next-btn" onclick="playMapAnimation()">See a Surprise ✨</button>
     </div>
 
-    <div id="screen-map" class="screen">
-        <div class="media-container">
-            <video id="map-video" width="100%" height="auto" muted playsinline>
-                <source src="assets/map_animation.mp4" type="video/mp4">
-                Your browser does not support the video.
-            </video>
-            </div>
-        <button id="skip-map" class="next-btn hidden" onclick="goToCakeScreen()">Continue to Cake 🎂</button>
+    <div id="screen-map" class="screen no-padding">
+        <video id="map-video" class="full-screen-video" muted playsinline>
+            <source src="assets/map_animation.mp4" type="video/mp4">
+        </video>
     </div>
 
+    <div id="screen-arrival" class="screen">
+        <h1 class="fade-in-text">IM HERE WITH YOUR CAKE :))) 🎂 🍰</h1>
+        <div class="cat-decoration">🏃‍♂️💨</div>
+        </div>
+    
     <div id="screen-cake" class="screen">
         <h2 class="fade-in-text">Make a wish! 🎂</h2>
         <div class="cake-area">
