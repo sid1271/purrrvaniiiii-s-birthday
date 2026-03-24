@@ -38,27 +38,42 @@ function switchScreen(oldId, newId) {
 function playMapAnimation() {
     switchScreen('screen2', 'screen-map');
     const video = document.getElementById('map-video');
+    
     if (video) {
-        video.play().catch(e => console.log("Video auto-play blocked, showing button."));
-        // Show skip button after 4 seconds (length of a typical travel clip)
-        setTimeout(() => {
-            document.getElementById('skip-map').classList.remove('hidden');
-        }, 4000);
+        // Force the video to start
+        video.play().catch(error => {
+            console.log("Autoplay blocked, skipping to arrival.");
+            goToArrivalScreen();
+        });
+
+        // CRITICAL: This triggers when the video finishes
+        video.onended = function() {
+            goToArrivalScreen();
+        };
     } else {
-        // Fallback if video tag is missing
-        goToCakeScreen();
+        goToArrivalScreen();
     }
 }
 
-// 2. Setup Cake
+function goToArrivalScreen() {
+    switchScreen('screen-map', 'screen-arrival');
+    
+    // Show the "I'M HERE" text for 2.5 seconds, then show the cake
+    setTimeout(() => {
+        goToCakeScreen();
+    }, 2500);
+}
+
 function goToCakeScreen() {
-    switchScreen('screen-map', 'screen-cake');
+    switchScreen('screen-arrival', 'screen-cake');
     const container = document.getElementById('candle-container');
-    container.innerHTML = '';
-    for(let i=0; i<19; i++) {
-        const c = document.createElement('div');
-        c.className = 'candle';
-        container.appendChild(c);
+    if (container) {
+        container.innerHTML = '';
+        for(let i=0; i<19; i++) {
+            const c = document.createElement('div');
+            c.className = 'candle';
+            container.appendChild(c);
+        }
     }
 }
 
