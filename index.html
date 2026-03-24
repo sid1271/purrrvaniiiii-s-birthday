@@ -22,13 +22,15 @@
     </div>
 
     <div id="screen-map" class="screen">
-        <div class="map-container">
-            <div class="location-label sid-label">Siddhant</div>
-            <div class="location-label par-label">Parvani</div>
-            <div class="map-line"></div>
-            <div id="traveler">🏃‍♂️</div>
+        <div class="map-wrapper-box">
+            <div class="location-container">
+                <span class="loc-tag">Siddhant</span>
+                <span class="loc-tag">Parvani</span>
+            </div>
+            <div class="map-path"></div>
+            <div id="traveler-emoji">🏃‍♂️</div>
         </div>
-        <p id="map-status">Traveling to you...</p>
+        <p id="map-status">Starting the journey...</p>
     </div>
 
     <div id="screen-cake" class="screen">
@@ -44,13 +46,20 @@
         <div id="interaction-zone">
             <button id="blow-btn" class="next-btn" onclick="blowCandles()">Blow out the candles!</button>
             <button id="cut-btn" class="next-btn hidden" onclick="cutCake()">Cut the cake! 🔪</button>
+            
             <div id="avatar-zone" class="hidden">
                 <div class="avatar-box" onclick="feedPerson('siddhant')">
-                    <img src="assets/siddhant.png" class="avatar" alt="Siddhant">
+                    <div class="img-fallback">
+                        <img src="assets/siddhant.png" class="avatar" onerror="this.style.display='none'">
+                        <span class="emoji-placeholder">👦</span>
+                    </div>
                     <div id="bubble-sid" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
                 </div>
                 <div class="avatar-box" onclick="feedPerson('parvani')">
-                    <img src="assets/parvani.png" class="avatar" alt="Parvani">
+                    <div class="img-fallback">
+                        <img src="assets/parvani.png" class="avatar" onerror="this.style.display='none'">
+                        <span class="emoji-placeholder">👸</span>
+                    </div>
                     <div id="bubble-par" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
                 </div>
             </div>
@@ -75,60 +84,7 @@
             <div class="moon-visual-layer">
                 <div id="moon-message">Scroll to see the moon grow...</div>
                 <div class="moon-wrapper">
-                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
-                    <div class="moon-shadow"></div> 
-                </div>
-                <div id="final-center-text" class="hidden">
-                    <h1>Forever My Full Moon.</h1>
-                    <p>I Love You, Parvani.</p>
-                </div>
-            </div>
-            <div id="moon-scroll-trigger"><div style="height: 300vh;"></div></div>
-            <div id="star-field"></div>
-        </div>
-    </div>
-
-    <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="closeLetter()">&times;</span>
-            <div id="modal-text"></div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>            <div id="avatar-zone" class="hidden">
-                <div class="avatar-box" onclick="feedPerson('siddhant')">
-                    <img src="assets/siddhant.png" class="avatar" alt="Siddhant">
-                    <div id="bubble-sid" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
-                </div>
-                <div class="avatar-box" onclick="feedPerson('parvani')">
-                    <img src="assets/parvani.png" class="avatar" alt="Parvani">
-                    <div id="bubble-par" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
-                </div>
-            </div>
-        </div>
-        <button id="to-letters-btn" class="next-btn hidden" onclick="goToLetters()">Open your letters ✨</button>
-    </div>
-
-    <div id="screen3" class="screen">
-        <div id="letter-container" class="letter-wall"></div>
-        <button id="quiz-trigger" class="next-btn hidden" onclick="goToQuiz()">Now, a quick quiz!</button>
-    </div>
-
-    <div id="screen4" class="screen">
-        <form id="birthday-form">
-            <div id="form-content"></div>
-            <button type="button" class="submit-btn" onclick="submitForm()">Finish ❤️</button>
-        </form>
-    </div>
-
-    <div id="screen5" class="screen">
-        <div class="night-sky">
-            <div class="moon-visual-layer">
-                <div id="moon-message">Scroll to see the moon grow...</div>
-                <div class="moon-wrapper">
-                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
+                    <img src="assets/moon.png" class="glowing-moon">
                     <div class="moon-shadow"></div> 
                 </div>
                 <div id="final-center-text" class="hidden">
