@@ -134,7 +134,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     border: 2px solid #FFB3C1;
 }
 
-/* --- GALAXY MOON FINALE: RESTORED --- */
+/* --- GALAXY MOON FINALE: THE SHADOW FIX --- */
 .night-sky { 
     background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%); 
     width: 100vw; 
@@ -144,16 +144,15 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Keeps everything vertically centered */
+    justify-content: center;
 }
 
 #moon-message {
     color: white;
     font-family: 'Quicksand', sans-serif;
     font-size: 1.3rem;
-    margin-bottom: 40px; /* Space between text and moon */
+    margin-bottom: 40px;
     height: 1.5rem;
-    transition: opacity 0.5s ease;
     z-index: 25;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
@@ -163,11 +162,11 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     width: 220px; 
     height: 220px; 
     border-radius: 50%; 
+    /* overflow: hidden is removed here and moved to a wrapper if needed, 
+       but for this effect, we keep it to clip the moon image only */
     overflow: hidden; 
-    background: #000;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    background: transparent; /* Fixes the 'black ring' bug */
     transform-origin: center center;
-    transition: transform 0.1s linear; /* Smooth Zoom */
 }
 
 .glowing-moon { 
@@ -175,6 +174,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     height: 100%; 
     object-fit: cover;
     display: block;
+    transition: filter 1s ease;
 }
 
 .moon-shadow { 
@@ -184,21 +184,21 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     width: 100%; 
     height: 100%; 
     background: #000; 
-    /* This negative spread creates the soft, realistic shadow edge */
-    box-shadow: -30px 0 50px 10px #000; 
+    border-radius: 50%; /* Makes the shadow circular */
+    /* This creates the 'feathered' realistic phase edge */
+    box-shadow: 0 0 35px 20px #000; 
     transform: translateX(-100%); 
     z-index: 2;
 }
 
 /* THE TRUE BLOOM EFFECT */
 .glowing-moon-finale { 
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #FFB3C1) drop-shadow(0 0 70px #FFB3C1);
-    transition: filter 1.5s ease-in-out;
+    filter: drop-shadow(0 0 15px #fff) drop-shadow(0 0 40px #FFB3C1) drop-shadow(0 0 70px #FFB3C1) !important;
 }
 
 #final-center-text { 
     position: absolute; 
-    top: 55%; /* Adjusted to sit nicely over the moon */
+    top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
     color: white; 
@@ -207,7 +207,13 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     width: 90%; 
     z-index: 30;
     text-align: center;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    text-shadow: 0 0 20px rgba(0,0,0,1);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#final-center-text.visible {
+    opacity: 1;
 }
 
 #moon-scroll-trigger { 
@@ -215,7 +221,4 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     top: 0; 
     width: 100%; 
     height: 100%; 
-    overflow-y: scroll; 
-    z-index: 40; /* Above everything to catch the scroll */
-    -webkit-overflow-scrolling: touch;
-}
+    overflow-
