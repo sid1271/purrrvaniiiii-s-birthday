@@ -149,32 +149,30 @@ function initMoonScroll() {
     const moonMsgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
 
     scrollTrigger.addEventListener('scroll', () => {
+        // Calculate Scroll Percentage
         let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
         
-        // 1. ZOOM EFFECT: Moon grows from 1.0 to 1.3
-        let scaleVal = 1 + (pct * 0.3);
-        moonWrapper.style.transform = `scale(${scaleVal})`;
+        // 1. ZOOM: Moon grows by 50% as you scroll
+        let zoomScale = 1 + (pct * 0.5);
+        moonWrapper.style.transform = `scale(${zoomScale})`;
 
-        // 2. SHADOW MOVEMENT: Smoothly clears the moon
-        let moveX = (pct * 230) - 110; 
+        // 2. SHADOW: Moves from -100% to 110%
+        let moveX = (pct * 210) - 100; 
         moonShadow.style.transform = `translateX(${moveX}%)`;
         
-        // 3. MESSAGE UPDATES
+        // 3. TEXT PHASES
         msgDisplay.innerText = moonMsgs[Math.min(Math.floor(pct * moonMsgs.length), moonMsgs.length - 1)];
 
-        // 4. FINALE: Bloom and Text
-        if (pct > 0.94) {
+        // 4. THE FINALE
+        if (pct > 0.92) {
             moonShadow.style.opacity = '0';
             moonImg.classList.add('glowing-moon-finale');
             finalCenter.classList.remove('hidden');
-            // Adding a timeout for the 'visible' class ensures the opacity transition works
-            setTimeout(() => finalCenter.classList.add('visible'), 50); 
             msgDisplay.style.opacity = '0';
         } else {
             moonShadow.style.opacity = '1';
             moonImg.classList.remove('glowing-moon-finale');
-            finalCenter.classList.remove('visible');
-            setTimeout(() => finalCenter.classList.add('hidden'), 500);
+            finalCenter.classList.add('hidden');
             msgDisplay.style.opacity = '1';
         }
     });
