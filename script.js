@@ -24,7 +24,7 @@ const envelopeMessages = [
 ];
 
 // --- 2. THE NAVIGATION & VAULT LOCK ---
-const targetDate = new Date("March 30, 2026 00:00:00").getTime();
+const targetDate = new Date("April 2, 2026 00:00:00").getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
