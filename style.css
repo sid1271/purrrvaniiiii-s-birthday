@@ -136,72 +136,20 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 
 /* --- GALAXY MOON FINALE: THE SHADOW FIX --- */
 /* --- MOON FINALE: THE RESET --- */
-.moon-visual-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; /* IMPORTANT: Allows scroll to pass through to the trigger */
-    z-index: 10;
-}
+night-sky { background: radial-gradient(circle at center, #1a1a2e 0%, #0d0d15 50%, #000000 100%); width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+#star-field { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)); background-repeat: repeat; background-size: 200px 200px; opacity: 0.5; }
 
-.moon-wrapper { 
-    position: relative; 
-    width: 250px; 
-    height: 250px; 
-    border-radius: 50%; 
-    overflow: hidden; /* Clips the moon image and shadow */
-    background: transparent; 
-    transform-origin: center center;
-}
+.moon-visual-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5; pointer-events: none; }
+#moon-scroll-trigger { width: 100%; height: 100vh; overflow-y: scroll; position: relative; z-index: 10; -webkit-overflow-scrolling: touch; }
+#moon-message { position: absolute; top: 15%; color: white; font-family: 'Dancing Script', cursive; font-size: 1.8rem; text-align: center; width: 80%; transition: opacity 0.5s ease; }
 
-.glowing-moon { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover;
-    transition: filter 1s ease;
-}
+.moon-wrapper { position: relative; width: 280px; height: 280px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+.glowing-moon { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); display: block; border-radius: 50%; transition: all 1.5s ease; }
+.moon-shadow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); border-radius: 50%; transform: translateX(-100%); z-index: 2; }
 
-.moon-shadow { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: #000; 
-    border-radius: 50%; /* Makes shadow circular */
-    /* This creates the 'Phase' look instead of a block */
-    box-shadow: 0 0 40px 20px #000; 
-    transform: translateX(-100%); 
-    z-index: 2;
-}
-
-/* THE BLOOM EFFECT (Pink & White Glow) */
 .glowing-moon-finale { 
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #FFB3C1) drop-shadow(0 0 80px #FFB3C1) !important;
+    opacity: 1 !important; 
+    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 45px #ffccd5) drop-shadow(0 0 80px #ffb3c1); 
 }
 
-#moon-scroll-trigger { 
-    position: absolute; 
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow-y: scroll; 
-    z-index: 100; /* Put this ABOVE everything */
-    -webkit-overflow-scrolling: touch;
-}
-
-#moon-message {
-    color: white;
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-#final-center-text h1 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; margin: 0; }
+#final-center-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: 'Dancing Script', cursive; font-size: 2.2rem; text-align: center; z-index: 10; width: 80%; }
