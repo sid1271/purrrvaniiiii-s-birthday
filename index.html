@@ -10,28 +10,24 @@
 </head>
 <body>
 
+    <!-- Landing Screen with Countdown -->
     <div id="screen1" class="screen active">
-        <div class="heart-trigger" onclick="switchScreen('screen1', 'screen2')">❤️</div>
-        <p class="tap-hint">Tap the heart to begin...</p>
+        <div id="timer-container">
+            <p>Your surprise unlocks in...</p>
+            <div id="countdown">00:00:00:00</div>
+        </div>
+        <div id="main-heart" class="heart-trigger locked" onclick="handleHeartClick()">❤️</div>
+        <p id="lock-hint" class="tap-hint">The heart is currently locked...</p>
     </div>
 
+    <!-- Birthday Wish Screen -->
     <div id="screen2" class="screen">
         <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
         <div class="cat-decoration">🐱✨</div>
-        <button class="next-btn" onclick="playMapAnimation()">See a Surprise ✨</button>
+        <button class="next-btn" onclick="goToCakeScreen()">Next Surprise ✨</button>
     </div>
 
-    <div id="screen-map" class="screen no-padding">
-        <video id="map-video" class="full-screen-video" muted playsinline>
-            <source src="assets/map_animation.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div id="screen-arrival" class="screen">
-        <h1 class="fade-in-text">IM HERE WITH YOUR CAKE :))) 🎂 🍰</h1>
-        <div class="cat-decoration">🏃‍♂️💨</div>
-        </div>
-    
+    <!-- Cake Ceremony Screen -->
     <div id="screen-cake" class="screen">
         <h2 class="fade-in-text">Make a wish! 🎂</h2>
         <div class="cake-area">
@@ -45,6 +41,7 @@
         <div id="interaction-zone">
             <button id="blow-btn" class="next-btn" onclick="blowCandles()">Blow out the candles!</button>
             <button id="cut-btn" class="next-btn hidden" onclick="cutCake()">Cut the cake! 🔪</button>
+            
             <div id="avatar-zone" class="hidden">
                 <div class="avatar-box" onclick="feedPerson('siddhant')">
                     <img src="assets/siddhant.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=S&background=FFB3C1&color=fff'">
@@ -59,11 +56,13 @@
         <button id="to-letters-btn" class="next-btn hidden" onclick="goToLetters()">Open your letters ✨</button>
     </div>
 
+    <!-- Letters Wall Screen -->
     <div id="screen3" class="screen">
         <div id="letter-container" class="letter-wall"></div>
         <button id="quiz-trigger" class="next-btn hidden" onclick="switchScreen('screen3', 'screen4'); generateForm();">Now, a quick quiz!</button>
     </div>
 
+    <!-- Quiz Screen -->
     <div id="screen4" class="screen">
         <form id="birthday-form">
             <div id="form-content"></div>
@@ -71,12 +70,13 @@
         </form>
     </div>
 
+    <!-- Final Moon Screen -->
     <div id="screen5" class="screen">
         <div class="night-sky">
             <div class="moon-visual-layer">
                 <div id="moon-message">Scroll to see the moon grow...</div>
                 <div class="moon-wrapper">
-                    <img src="assets/moon.png" class="glowing-moon" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg'">
+                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
                     <div class="moon-shadow"></div> 
                 </div>
                 <div id="final-center-text" class="hidden">
@@ -89,6 +89,7 @@
         </div>
     </div>
 
+    <!-- Letter Modal -->
     <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-modal" onclick="closeLetter()">&times;</span>
