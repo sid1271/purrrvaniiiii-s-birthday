@@ -60,53 +60,56 @@ body, html {
 /* --- CAKE CEREMONY --- */
 .cake-area {
     position: relative;
-    height: 180px;
+    height: 220px; /* Increased height to give candles room */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-}
-
-.cake {
-    width: 150px;
-    height: 80px;
-    background: #fce1e4;
-    border-radius: 15px;
-    position: relative;
-    border-bottom: 5px solid #f8bbd0;
+    justify-content: flex-end; /* Keeps cake at bottom, candles on top */
+    margin: 20px 0;
 }
 
 .candles {
     position: absolute;
-    top: -20px;
-    width: 100%;
+    top: 10px; /* Positions candles sitting on top of the cake */
+    width: 160px; /* Match width of the cake top */
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* CRITICAL: This stops the vertical line */
     justify-content: center;
+    align-items: flex-end;
+    z-index: 10;
+    pointer-events: none; /* Allows clicks to pass through to buttons if needed */
 }
 
 .candle {
-    width: 5px;
-    height: 20px;
+    width: 6px;
+    height: 25px;
     background: #ffd166;
-    margin: 2px;
+    margin: 2px; /* Small gap between candles */
     position: relative;
+    border-radius: 2px;
 }
 
+/* The Flame */
 .candle::after {
     content: '';
     position: absolute;
-    top: -8px;
+    top: -10px;
     left: 0px;
-    width: 5px;
-    height: 10px;
+    width: 6px;
+    height: 12px;
     background: orange;
-    border-radius: 50%;
-    box-shadow: 0 0 5px orange;
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 8px orange;
 }
 
 .candle.out::after {
     display: none;
+}
+
+/* Fix for the Cat being hidden */
+.cake-area img {
+    z-index: 0;
+    margin-bottom: -10px; /* Tucks the cat slightly behind the cake */
 }
 
 #cake-slice {
