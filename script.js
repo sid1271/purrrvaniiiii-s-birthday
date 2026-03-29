@@ -2,7 +2,6 @@ const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz";
 
 // --- 1. THE LETTERS (19 total) ---
 const envelopeMessages = [
-    const envelopeMessages = [
     "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! Keep that beautiful smile on your face, and... read on. :) ❤️", 
     "I honestly can't believe how hectic college has been. Life has a way of throwing everything at us at once, doesn't it? But you pulled through, like you always do, and here we finally are. Even if it’s only virtually for now, I’m just glad I get to be 'with' you on your big day. 🥳", 
     "I honestly don’t know how we do it, but I’ve really started to cherish our calls and those endless late-night talks. Even though we clearly have the most 'disturbed' sleep cycles in the world, I’d say the conversations more than make up for the exhaustion. Honestly, talking to you is the highlight of my day—it's the one thing that keeps me sane and genuinely happy. So, I’m giving all the credit to that sweet voice of yours. It makes me smile every single time. 🥰",
