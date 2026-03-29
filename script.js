@@ -1,29 +1,5 @@
 const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz"; 
 
-// --- COUNTDOWN TIMER CONFIG ---
-// Set your date here: Year, Month (0-indexed, so 2 = March), Day, Hour, Min
-const targetDate = new Date(2026, 2, 30, 0, 0, 0).getTime();
-let timerDisabled = true; // SET TO FALSE TO ENABLE THE LOCK
-
-function updateTimer() {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
-    if (diff <= 0) {
-        document.getElementById('timer-display').style.display = 'none';
-        return true;
-    }
-    const h = Math.floor((diff / (1000 * 60 * 60)));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById('countdown').innerText = `${h}h ${m}m ${s}s`;
-    return false;
-}
-if(!timerDisabled) setInterval(updateTimer, 1000);
-
-function handleHeartClick() {
-    switchScreen('screen1', 'screen2');
-}
-
 const envelopeMessages = [
     "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! ❤️",
     "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, and here we are. I’m just glad I get to be 'with' you. 🥳",
@@ -46,27 +22,14 @@ const envelopeMessages = [
     "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
-const moonMessages = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
-
 function switchScreen(oldId, newId) {
-    const oldScreen = document.getElementById(oldId);
-    const newScreen = document.getElementById(newId);
-    
-    if(oldScreen && newScreen) {
-        // Remove active class from ALL screens just to be safe
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        
-        // Add active class to the new one
-        newScreen.classList.add('active');
-        
-        // Specific logic for Moon Scroll
-        if(newId === 'screen5') {
-            initMoonScroll();
-        }
-        console.log("Successfully moved to: " + newId);
-    } else {
-        console.error("Screen ID not found: " + oldId + " or " + newId);
-    }
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(newId).classList.add('active');
+    if(newId === 'screen5') initMoonScroll();
+}
+
+function handleHeartClick() {
+    switchScreen('screen1', 'screen2');
 }
 
 function goToCakeScreen() {
@@ -88,7 +51,6 @@ function blowCandles() {
 
 function cutCake() {
     document.getElementById('cake-main').classList.add('hidden');
-    document.getElementById('candle-container').classList.add('hidden');
     document.getElementById('cut-btn').classList.add('hidden');
     document.getElementById('cake-slice').classList.remove('hidden');
     document.getElementById('avatar-zone').classList.remove('hidden');
@@ -117,9 +79,7 @@ function goToLetters() {
             letter.innerHTML = '💌';
             letter.onclick = () => openLetter(msg);
             container.appendChild(letter);
-            if (i === envelopeMessages.length - 1) {
-                document.getElementById('quiz-trigger').classList.remove('hidden');
-            }
+            if (i === envelopeMessages.length - 1) document.getElementById('quiz-trigger').classList.remove('hidden');
         }, i * 100);
     });
 }
@@ -169,118 +129,22 @@ function initMoonScroll() {
     const moonShadow = document.querySelector('.moon-shadow');
     const moonImg = document.querySelector('.glowing-moon');
     const msgDisplay = document.getElementById('moon-message');
-    const finalCenter = document.getElementById('final-center-text');
+    const msgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
 
     scrollTrigger.addEventListener('scroll', () => {
         let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
         moonShadow.style.transform = `translateX(${(pct * 210) - 100}%)`;
-        msgDisplay.innerText = moonMessages[Math.min(Math.floor(pct * moonMessages.length), moonMessages.length - 1)];
+        msgDisplay.innerText = msgs[Math.min(Math.floor(pct * msgs.length), msgs.length - 1)];
 
         if (pct > 0.95) {
             moonShadow.style.display = 'none';
             moonImg.classList.add('glowing-moon-finale');
-            finalCenter.classList.remove('hidden');
+            document.getElementById('final-center-text').classList.remove('hidden');
             msgDisplay.style.opacity = '0';
         } else {
             moonShadow.style.display = 'block';
             moonImg.classList.remove('glowing-moon-finale');
-            finalCenter.classList.add('hidden');
-            msgDisplay.style.opacity = '1';
-        }
-    });
-}    document.getElementById('blow-btn').classList.add('hidden');
-    document.getElementById('cut-btn').classList.remove('hidden');
-}
-
-function cutCake() {
-    document.getElementById('cake-main').classList.add('hidden');
-    document.getElementById('cut-btn').classList.add('hidden');
-    document.getElementById('cake-slice').classList.remove('hidden');
-    document.getElementById('avatar-zone').classList.remove('hidden');
-}
-
-let sidFed = false;
-function feedPerson(person) {
-    if(person === 'siddhant') {
-        document.getElementById('bubble-sid').classList.remove('hidden');
-        sidFed = true;
-    } else if(person === 'parvani' && sidFed) {
-        document.getElementById('bubble-par').classList.remove('hidden');
-        confetti({ particleCount: 150, spread: 70 });
-        document.getElementById('to-letters-btn').classList.remove('hidden');
-    }
-}
-
-// 3. Letters Reveal
-function goToLetters() {
-    switchScreen('screen-cake', 'screen3');
-    const container = document.getElementById('letter-container');
-    container.innerHTML = ''; 
-    envelopeMessages.forEach((msg, i) => {
-        setTimeout(() => {
-            const letter = document.createElement('div');
-            letter.className = 'letter-pop';
-            letter.innerHTML = '💌';
-            letter.onclick = () => openLetter(msg);
-            container.appendChild(letter);
-            if (i === envelopeMessages.length - 1) {
-                document.getElementById('quiz-trigger').classList.remove('hidden');
-            }
-        }, i * 100);
-    });
-}
-
-function openLetter(text) {
-    const modal = document.getElementById('letter-modal');
-    document.getElementById('modal-text').innerText = text;
-    modal.classList.add('modal-active');
-    modal.classList.remove('hidden');
-}
-
-function closeLetter() {
-    const modal = document.getElementById('letter-modal');
-    modal.classList.remove('modal-active');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-}
-
-// 4. Quiz & Finale
-function generateForm() {
-    const formDiv = document.getElementById('form-content');
-    const questions = ["Favorite memory?", "First date location?", "Best thing about Bangalore?", "Favorite cat breed?", "How much do you love me?"];
-    formDiv.innerHTML = ''; 
-    questions.forEach((q, i) => {
-        formDiv.innerHTML += `<div class="form-group"><p>${i+1}. ${q}</p><input type="text" name="q${i+1}" required></div>`;
-    });
-}
-
-function submitForm() {
-    confetti({ particleCount: 150, spread: 70 });
-    const form = document.getElementById('birthday-form');
-    fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }});
-    switchScreen('screen4', 'screen5');
-}
-
-function initMoonScroll() {
-    const scrollTrigger = document.getElementById('moon-scroll-trigger');
-    const moonShadow = document.querySelector('.moon-shadow');
-    const moonImg = document.querySelector('.glowing-moon');
-    const msgDisplay = document.getElementById('moon-message');
-    const finalCenter = document.getElementById('final-center-text');
-
-    scrollTrigger.addEventListener('scroll', () => {
-        let scrollPercent = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
-        moonShadow.style.transform = `translateX(${(scrollPercent * 210) - 100}%)`;
-        msgDisplay.innerText = moonMessages[Math.min(Math.floor(scrollPercent * moonMessages.length), moonMessages.length - 1)];
-
-        if (scrollPercent > 0.95) {
-            moonShadow.style.display = 'none';
-            moonImg.classList.add('glowing-moon-finale');
-            finalCenter.classList.remove('hidden');
-            msgDisplay.style.opacity = '0';
-        } else {
-            moonShadow.style.display = 'block';
-            moonImg.classList.remove('glowing-moon-finale');
-            finalCenter.classList.add('hidden');
+            document.getElementById('final-center-text').classList.add('hidden');
             msgDisplay.style.opacity = '1';
         }
     });
