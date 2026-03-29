@@ -41,40 +41,70 @@ function switchScreen(oldId, newId) {
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
+    
+    // Safety check to ensure container exists
+    if (!container) return;
+
     container.innerHTML = '';
+    // Create 19 candles
     for(let i=0; i<19; i++) {
         const c = document.createElement('div');
         c.className = 'candle';
         container.appendChild(c);
     }
+    // Reset feeding logic
+    sidFed = false;
 }
 
 // 3. Cake Logic
 function blowCandles() {
-    document.querySelectorAll('.candle').forEach(c => c.classList.add('out'));
+    const candles = document.querySelectorAll('.candle');
+    candles.forEach(c => c.classList.add('out'));
+    
+    // Hide blow button, show cut button
     document.getElementById('blow-btn').classList.add('hidden');
-    document.getElementById('cut-btn').classList.remove('hidden');
+    setTimeout(() => {
+        document.getElementById('cut-btn').classList.remove('hidden');
+    }, 500);
 }
 
 function cutCake() {
     document.getElementById('cake-main').classList.add('hidden');
     document.getElementById('cut-btn').classList.add('hidden');
+    
+    // Show the slice and the faces
     document.getElementById('cake-slice').classList.remove('hidden');
     document.getElementById('avatar-zone').classList.remove('hidden');
 }
 
 let sidFed = false;
+
 function feedPerson(person) {
-    if(person === 'siddhant') {
+    if (person === 'siddhant') {
         document.getElementById('bubble-sid').classList.remove('hidden');
         sidFed = true;
-    } else if(person === 'parvani' && sidFed) {
+        // Optional: Add a small bounce to show he's happy
+        document.querySelector('.avatar-box').style.transform = "scale(1.1)";
+        setTimeout(() => {
+            document.querySelector('.avatar-box').style.transform = "scale(1)";
+        }, 200);
+    } 
+    else if (person === 'parvani') {
+        if (!sidFed) {
+            alert("Feed Siddhant a bite first! 😋"); // Friendly hint
+            return;
+        }
         document.getElementById('bubble-par').classList.remove('hidden');
-        confetti({ particleCount: 150, spread: 70 });
-        document.getElementById('to-letters-btn').classList.remove('hidden');
+        
+        // Celebration!
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+document.getElementById('to-letters-btn').classList.remove('hidden');
     }
 }
-
 // 4. Letters
 function goToLetters() {
     switchScreen('screen-cake', 'screen3');
