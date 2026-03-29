@@ -54,11 +54,8 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 
 function handleHeartClick() {
-    if (isUnlocked) {
-        switchScreen('screen1', 'screen2');
-    } else {
-        alert("Patience, Princess! The surprise isn't ready until midnight. 😉");
-    }
+    // Bypassing the lock for now
+    switchScreen('screen1', 'screen2');
 }
 
 // 2. Navigation
