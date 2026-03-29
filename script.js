@@ -35,14 +35,19 @@ function updateCountdown() {
     const hint = document.getElementById('lock-hint');
 
     if (distance > 0) {
-        // STILL LOCKED
+        // --- THE FIXED MATH ---
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24)); // Added this
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (timerDisplay) timerDisplay.innerText = `${hours}h ${minutes}m ${seconds}s`;
+        // Update the display to include "d" for days
+        if (timerDisplay) {
+            timerDisplay.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        
         heart.classList.add('heart-locked');
-        heart.onclick = null; // Disable the click
+        heart.onclick = null; 
     } else {
         // UNLOCKED!
         if (timerDisplay) timerDisplay.classList.add('hidden');
@@ -50,7 +55,6 @@ function updateCountdown() {
         heart.classList.remove('heart-locked');
         heart.classList.add('heart-unlocked');
         
-        // Re-enable the click
         heart.onclick = function() {
             handleHeartClick();
         };
