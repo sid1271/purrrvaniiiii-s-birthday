@@ -6,12 +6,12 @@
     <title>For Parvani ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
     <div id="screen1" class="screen active">
-        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()" style="position: relative; z-index: 999;">❤️</div>
+        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()">❤️</div>
         <p class="tap-hint">Tap the heart to begin...</p>
     </div>
 
@@ -25,9 +25,7 @@
         <h2 class="fade-in-text">Make a wish! 🎂</h2>
         <div class="cake-area">
             <div id="candle-container" class="candles"></div>
-            <div id="cake-main" class="cake">
-                <div class="cake-top-edge"></div>
-            </div>
+            <div id="cake-main" class="cake"></div>
             <div id="cake-slice" class="hidden">🍰</div>
         </div>
         <div id="interaction-zone">
@@ -64,7 +62,7 @@
             <div class="moon-visual-layer">
                 <div id="moon-message">Scroll to see the moon grow...</div>
                 <div class="moon-wrapper">
-                    <img src="assets/moon.png" class="glowing-moon" alt="Moon">
+                    <img src="assets/moon.png" class="glowing-moon">
                     <div class="moon-shadow"></div> 
                 </div>
                 <div id="final-center-text" class="hidden">
@@ -73,7 +71,6 @@
                 </div>
             </div>
             <div id="moon-scroll-trigger"><div style="height: 300vh;"></div></div>
-            <div id="star-field"></div>
         </div>
     </div>
 
