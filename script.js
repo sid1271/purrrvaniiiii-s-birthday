@@ -21,7 +21,7 @@ const envelopeMessages = [
     "I honestly have the worst sleep control mechanism ever. It’s a complete mystery to me how you manage to stay awake and sound so perfectly fresh. As soon as nighttime hits, my brain apparently decides its work is done, and I start saying the most random things! Sikha do mujhe bhi, kaise karti ho manage? I guess until I learn your secrets, you’ll just have to keep putting up with my sleepy, late-night rambling. Thank you for always being the wakeful one for both of us! 😴🌙", 
     "Look, if you ever feel the sudden urge to block me, I’m begging you, DELETE kar do uss thought ko. Mostly because I have absolutely zero experience in sending messages via pigeon, and I don't think kabhi hoga bhi. Even if I did somehow manage to train a bird, let’s be real, that poor pigeon would have no idea how to find its way to Room 307! Aur Alibag ka address toh pata hi nahi hai mujhe 😀. So for the sake of the birds (and my sanity), let’s just keep the digital lines open, okay? 😂", 
     "Dekho, Princess toh tum ho, isme koi doubt hi nahi hai. Aur rahi baat efforts ki, toh tum best hi deserve karti ho. Kabhi kabhi mujhe sach mein lagta hai ki main thoda kam hi kar raha hoon... shayad mujhe apna 'pagalpan' wala quotient thoda aur badhana padega! Aur rahi baat ki 'log kya kahenge,' toh sach bolu toh logon se humein kya? 🥰",
-    "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️",
+    "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
 // --- 2. THE NAVIGATION ---
