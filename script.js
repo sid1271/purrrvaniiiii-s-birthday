@@ -150,7 +150,7 @@ const moonMessages = [
     "Every phase of you is beautiful...",
     "The way you glow and grow...",
     "Almost there...",
-    "My forever full moon."
+    "The best phase of the moon :)."
 ];
 
 function initMoonScroll() {
