@@ -5,18 +5,46 @@
 body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: 'Quicksand', sans-serif; background: #000; }
 
 .screen { 
-    display: none; height: 100vh; width: 100vw; position: absolute; top: 0; left: 0; 
-    flex-direction: column; align-items: center; justify-content: center; padding: 20px; 
-    box-sizing: border-box; text-align: center; background-image: url('assets/background.png'); 
-    background-size: cover; background-position: center; 
+    display: none; 
+    height: 100vh; 
+    width: 100vw; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    text-align: center; 
+    background-image: url('assets/background.png'); 
+    background-size: cover; 
+    background-position: center;
+    /* This line is CRITICAL: it prevents hidden screens from blocking clicks */
+    pointer-events: none; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
-.screen.active { display: flex; z-index: 10; }
+.screen.active { 
+    display: flex; 
+    z-index: 100; 
+    pointer-events: auto; /* Re-enable clicks only for the visible screen */
+    opacity: 1;
+}
 
 /* Timer Style */
 .timer-style { color: white; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem; }
 
 /* Heart */
-.heart-trigger { font-size: 100px; cursor: pointer; animation: pulse 1.5s infinite; }
+.heart-trigger { 
+    font-size: 100px; 
+    cursor: pointer; 
+    animation: pulse 1.5s infinite; 
+    position: relative;
+    z-index: 999; /* Put it above everything else */
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* Fixes blue flash on mobile tap */
+}
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
 /* FIXED CAKE & CANDLES */
