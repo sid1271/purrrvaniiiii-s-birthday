@@ -10,10 +10,11 @@
 </head>
 <body>
 
-    <div id="screen1" class="screen active">
-        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()">❤️</div>
-        <p class="tap-hint">Tap the heart to begin...</p>
-    </div>
+   <div id="screen1" class="screen active">
+    <div id="main-heart" class="heart-trigger">❤️</div> <!-- Removed onclick from here -->
+    <div id="countdown-timer">Loading...</div>
+    <p id="lock-hint" class="tap-hint">The vault is locked until midnight...</p>
+</div>
 
     <div id="screen2" class="screen">
         <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
