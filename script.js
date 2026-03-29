@@ -143,6 +143,7 @@ function initMoonScroll() {
     const scrollTrigger = document.getElementById('moon-scroll-trigger');
     const moonShadow = document.querySelector('.moon-shadow');
     const moonImg = document.querySelector('.glowing-moon');
+    const moonWrapper = document.querySelector('.moon-wrapper');
     const msgDisplay = document.getElementById('moon-message');
     const finalCenter = document.getElementById('final-center-text');
     const moonMsgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
@@ -150,21 +151,30 @@ function initMoonScroll() {
     scrollTrigger.addEventListener('scroll', () => {
         let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
         
-        // Match the math to the new CSS shadow blur
-        let moveX = (pct * 215) - 105; 
+        // 1. ZOOM EFFECT: Moon grows from 1.0 to 1.3
+        let scaleVal = 1 + (pct * 0.3);
+        moonWrapper.style.transform = `scale(${scaleVal})`;
+
+        // 2. SHADOW MOVEMENT: Smoothly clears the moon
+        let moveX = (pct * 230) - 110; 
         moonShadow.style.transform = `translateX(${moveX}%)`;
         
+        // 3. MESSAGE UPDATES
         msgDisplay.innerText = moonMsgs[Math.min(Math.floor(pct * moonMsgs.length), moonMsgs.length - 1)];
 
-        if (pct > 0.93) {
+        // 4. FINALE: Bloom and Text
+        if (pct > 0.94) {
             moonShadow.style.opacity = '0';
             moonImg.classList.add('glowing-moon-finale');
             finalCenter.classList.remove('hidden');
+            // Adding a timeout for the 'visible' class ensures the opacity transition works
+            setTimeout(() => finalCenter.classList.add('visible'), 50); 
             msgDisplay.style.opacity = '0';
         } else {
             moonShadow.style.opacity = '1';
             moonImg.classList.remove('glowing-moon-finale');
-            finalCenter.classList.add('hidden');
+            finalCenter.classList.remove('visible');
+            setTimeout(() => finalCenter.classList.add('hidden'), 500);
             msgDisplay.style.opacity = '1';
         }
     });
