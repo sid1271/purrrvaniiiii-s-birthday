@@ -30,31 +30,22 @@ const envelopeMessages = [
 // 1. Timer Logic
 let isUnlocked = false;
 
+// --- DEVELOPER BYPASS START ---
+let isUnlocked = true; // Force this to true
 function updateTimer() {
+    // We'll keep the numbers running for visuals, but they won't lock anything
     const now = new Date().getTime();
     const distance = BIRTHDAY_DATE - now;
-
-    if (distance < 0) {
-        isUnlocked = true;
-        document.getElementById("countdown").innerText = "IT'S TIME! ❤️";
-        document.getElementById("main-heart").classList.remove("locked");
-        document.getElementById("lock-hint").innerText = "The surprise is ready for you!";
-        return;
-    }
-
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerText = 
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById("countdown").innerText = `DEV MODE: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
-setInterval(updateTimer, 1000);
+// --- DEVELOPER BYPASS END ---
 
 function handleHeartClick() {
-    // Bypassing the lock for now
+    // Direct skip - no conditions
     switchScreen('screen1', 'screen2');
 }
 
