@@ -134,7 +134,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     border: 2px solid #FFB3C1;
 }
 
-/* --- ULTIMATE MOON FINALE --- */
+/* --- GALAXY MOON FINALE: RESTORED --- */
 .night-sky { 
     background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%); 
     width: 100vw; 
@@ -144,28 +144,30 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Keeps everything vertically centered */
 }
 
 #moon-message {
     color: white;
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 30px; /* Gives space so it's not cut off */
+    font-size: 1.3rem;
+    margin-bottom: 40px; /* Space between text and moon */
     height: 1.5rem;
     transition: opacity 0.5s ease;
     z-index: 25;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .moon-wrapper { 
     position: relative; 
-    width: 220px; /* Base size */
+    width: 220px; 
     height: 220px; 
     border-radius: 50%; 
     overflow: hidden; 
-    background: transparent; /* Changed to transparent to fix the black ring bug */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-    transition: transform 0.1s linear; /* For smooth zooming */
+    background: #000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform-origin: center center;
+    transition: transform 0.1s linear; /* Smooth Zoom */
 }
 
 .glowing-moon { 
@@ -182,31 +184,38 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     width: 100%; 
     height: 100%; 
     background: #000; 
-    /* Softened the inset shadow to prevent the 'ring' look */
-    box-shadow: inset -20px 0 40px 5px #000, -10px 0 20px #000;
+    /* This negative spread creates the soft, realistic shadow edge */
+    box-shadow: -30px 0 50px 10px #000; 
     transform: translateX(-100%); 
     z-index: 2;
 }
 
-/* THE REAL BLOOM EFFECT */
+/* THE TRUE BLOOM EFFECT */
 .glowing-moon-finale { 
-    filter: drop-shadow(0 0 25px #fff) drop-shadow(0 0 50px #FFB3C1) drop-shadow(0 0 80px #FFB3C1);
+    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #FFB3C1) drop-shadow(0 0 70px #FFB3C1);
     transition: filter 1.5s ease-in-out;
 }
 
 #final-center-text { 
     position: absolute; 
-    top: 50%; 
+    top: 55%; /* Adjusted to sit nicely over the moon */
     left: 50%; 
     transform: translate(-50%, -50%); 
     color: white; 
-    font-family: 'Dancing Script'; 
-    font-size: 2.2rem; 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 2.5rem; 
     width: 90%; 
     z-index: 30;
     text-align: center;
-    opacity: 0;
-    transition: opacity 2s ease;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
-#final-center-text.visible { opacity: 1; }
+#moon-scroll-trigger { 
+    position: absolute; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow-y: scroll; 
+    z-index: 40; /* Above everything to catch the scroll */
+    -webkit-overflow-scrolling: touch;
+}
