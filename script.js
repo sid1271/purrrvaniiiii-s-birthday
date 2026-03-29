@@ -22,14 +22,12 @@ const envelopeMessages = [
     "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
-// --- CORE NAVIGATION ---
 function switchScreen(oldId, newId) {
-    const oldScreen = document.getElementById(oldId);
-    const newScreen = document.getElementById(newId);
-    if(oldScreen && newScreen) {
-        oldScreen.classList.remove('active');
-        newScreen.classList.add('active');
-        console.log(`Switched from ${oldId} to ${newId}`);
+    const old = document.getElementById(oldId);
+    const next = document.getElementById(newId);
+    if(old && next) {
+        old.classList.remove('active');
+        next.classList.add('active');
         if(newId === 'screen5') initMoonScroll();
     }
 }
@@ -38,15 +36,10 @@ function handleHeartClick() {
     switchScreen('screen1', 'screen2');
 }
 
-// --- CAKE CEREMONY LOGIC ---
-let hasBlownCandles = false;
-let hasCutCake = false;
-let hasFedSiddhant = false;
-
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
-    container.innerHTML = ''; // Clear the old "line"
+    container.innerHTML = '';
     for(let i=0; i<19; i++) {
         const c = document.createElement('div');
         c.className = 'candle';
@@ -55,162 +48,30 @@ function goToCakeScreen() {
 }
 
 function blowCandles() {
-    const candles = document.querySelectorAll('.candle');
-    candles.forEach(c => c.classList.add('out'));
-    hasBlownCandles = true;
+    document.querySelectorAll('.candle').forEach(c => c.classList.add('out'));
     document.getElementById('blow-btn').classList.add('hidden');
     document.getElementById('cut-btn').classList.remove('hidden');
-    console.log("Candles blown out");
-}
-
-function cutCake() {
-    if(!hasBlownCandles) return;
-    document.getElementById('cake-main').classList.add('hidden');
-    document.getElementById('cut-btn').classList.add('hidden');
-    document.getElementById('cake-slice').classList.remove('hidden');
-    document.getElementById('avatar-zone').classList.remove('hidden');
-    hasCutCake = true;
-    console.log("Cake cut");
-}
-
-function feedPerson(person) {
-    if(!hasCutCake) return;
-
-    if(person === 'siddhant') {
-        document.getElementById('bubble-sid').classList.remove('hidden');
-        hasFedSiddhant = true;
-        console.log("Siddhant fed");
-    } 
-    else if(person === 'parvani') {
-        if(!hasFedSiddhant) {
-            alert("Feed Siddhant first! 😋");
-            return;
-        }
-        document.getElementById('bubble-par').classList.remove('hidden');
-        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        document.getElementById('to-letters-btn').classList.remove('hidden');
-        console.log("Parvani fed - Final button revealed");
-    }
-}
-
-// --- LETTERS WALL ---
-function goToLetters() {
-    switchScreen('screen-cake', 'screen3');
-    const container = document.getElementById('letter-container');
-    container.innerHTML = ''; 
-    
-    envelopeMessages.forEach((msg, i) => {
-        setTimeout(() => {
-            const letter = document.createElement('div');
-            letter.className = 'letter-pop';
-            letter.innerHTML = '💌';
-            letter.onclick = () => openLetter(msg);
-            container.appendChild(letter);
-            
-            if (i === envelopeMessages.length - 1) {
-                document.getElementById('quiz-trigger').classList.remove('hidden');
-            }
-        }, i * 100);
-    });
-}
-
-function openLetter(text) {
-    const modal = document.getElementById('letter-modal');
-    document.getElementById('modal-text').innerText = text;
-    modal.classList.add('modal-active');
-    modal.classList.remove('hidden');
-}
-
-function closeLetter() {
-    const modal = document.getElementById('letter-modal');
-    modal.classList.remove('modal-active');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-}
-
-// --- QUIZ & FINALE ---
-function generateForm() {
-    const formDiv = document.getElementById('form-content');
-    const questions = ["Favorite memory?", "First date location?", "Best thing about Bangalore?", "Favorite physical attribute?", "How much do you love me?"];
-    formDiv.innerHTML = ''; 
-    questions.forEach((q, i) => {
-        formDiv.innerHTML += `<div class="form-group"><p>${i+1}. ${q}</p><input type="text" name="q${i+1}" required></div>`;
-    });
-}
-
-function submitForm() {
-    confetti({ particleCount: 150, spread: 70 });
-    const form = document.getElementById('birthday-form');
-    fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }});
-    switchScreen('screen4', 'screen5');
-}
-
-function initMoonScroll() {
-    const scrollTrigger = document.getElementById('moon-scroll-trigger');
-    const moonShadow = document.querySelector('.moon-shadow');
-    const moonImg = document.querySelector('.glowing-moon');
-    const msgDisplay = document.getElementById('moon-message');
-    const finalCenter = document.getElementById('final-center-text');
-    const msgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
-
-    scrollTrigger.addEventListener('scroll', () => {
-        let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
-        moonShadow.style.transform = `translateX(${(pct * 210) - 100}%)`;
-        msgDisplay.innerText = msgs[Math.min(Math.floor(pct * msgs.length), msgs.length - 1)];
-
-        if (pct > 0.95) {
-            moonShadow.style.display = 'none';
-            moonImg.classList.add('glowing-moon-finale');
-            finalCenter.classList.remove('hidden');
-            msgDisplay.style.opacity = '0';
-        } else {
-            moonShadow.style.display = 'block';
-            moonImg.classList.remove('glowing-moon-finale');
-            finalCenter.classList.add('hidden');
-            msgDisplay.style.opacity = '1';
-        }
-    });
-}        document.getElementById('cut-btn').classList.remove('hidden');
-    }, 500);
 }
 
 function cutCake() {
     document.getElementById('cake-main').classList.add('hidden');
     document.getElementById('cut-btn').classList.add('hidden');
-    
-    // Show the slice and the faces
     document.getElementById('cake-slice').classList.remove('hidden');
     document.getElementById('avatar-zone').classList.remove('hidden');
 }
 
 let sidFed = false;
-
 function feedPerson(person) {
-    if (person === 'siddhant') {
+    if(person === 'siddhant') {
         document.getElementById('bubble-sid').classList.remove('hidden');
         sidFed = true;
-        // Optional: Add a small bounce to show he's happy
-        document.querySelector('.avatar-box').style.transform = "scale(1.1)";
-        setTimeout(() => {
-            document.querySelector('.avatar-box').style.transform = "scale(1)";
-        }, 200);
-    } 
-    else if (person === 'parvani') {
-        if (!sidFed) {
-            alert("Feed Siddhant a bite first! 😋"); // Friendly hint
-            return;
-        }
+    } else if(person === 'parvani' && sidFed) {
         document.getElementById('bubble-par').classList.remove('hidden');
-        
-        // Celebration!
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-document.getElementById('to-letters-btn').classList.remove('hidden');
+        confetti({ particleCount: 150, spread: 70 });
+        document.getElementById('to-letters-btn').classList.remove('hidden');
     }
 }
-// 4. Letters
+
 function goToLetters() {
     switchScreen('screen-cake', 'screen3');
     const container = document.getElementById('letter-container');
@@ -240,7 +101,6 @@ function closeLetter() {
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
-// 5. Quiz & Finale
 function generateForm() {
     const formDiv = document.getElementById('form-content');
     const questions = ["Favorite memory?", "First date location?", "What you love about Bangalore?", "Favorite physical attribute?", "How much do you love me?"];
