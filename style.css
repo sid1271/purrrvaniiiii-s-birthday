@@ -10,6 +10,47 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     background-size: cover; background-position: center; 
 }
 .screen.active { display: flex; z-index: 10; }
+#screen3, #screen4 {
+    overflow-y: auto !important;
+    display: none; /* Base state */
+    justify-content: flex-start; /* Align content to top so it scrolls down */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#screen3.active, #screen4.active {
+    display: flex;
+}
+
+#birthday-form {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group p {
+    color: white; /* Make sure questions are visible against the background */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid var(--accent-pink);
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Quicksand', sans-serif;
+    box-sizing: border-box; /* Crucial for padding */
+}
 
 .heart-trigger { font-size: 100px; cursor: pointer; animation: pulse 1.5s infinite; }
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
