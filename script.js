@@ -1,10 +1,5 @@
 const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz"; 
 
-// --- COUNTDOWN SETTINGS ---
-// IMPORTANT: Month is 0-indexed. 2 = March, 7 = August.
-// Format: (Year, Month, Day, Hour, Minute)
-const BIRTHDAY_DATE = new Date(2026, 2, 30, 0, 0, 0).getTime(); 
-
 const envelopeMessages = [
     "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! ❤️",
     "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, and here we are. 🥳",
@@ -27,25 +22,9 @@ const envelopeMessages = [
     "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
-// 1. Timer Logic
-let isUnlocked = false;
 
-// --- DEVELOPER BYPASS START ---
-let isUnlocked = true; // Force this to true
-function updateTimer() {
-    // We'll keep the numbers running for visuals, but they won't lock anything
-    const now = new Date().getTime();
-    const distance = BIRTHDAY_DATE - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("countdown").innerText = `DEV MODE: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-// --- DEVELOPER BYPASS END ---
-
+// UPDATE this function to be a direct switch:
 function handleHeartClick() {
-    // Direct skip - no conditions
     switchScreen('screen1', 'screen2');
 }
 
