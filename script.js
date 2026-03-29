@@ -110,16 +110,16 @@ function closeLetter() {
 function generateForm() {
     const formDiv = document.getElementById('form-content');
     const questions = [
-        "First impression of me?", 
-        "Our best late night talk topic?", 
-        "One thing that always makes you smile about us?", 
-        "Your favorite song I recommended?", 
-        "Which city are we visiting first together?",
-        "My most annoying but cute habit?",
-        "Who is the better cook (be honest)?",
-        "The moment you knew I was special?",
-        "Favorite outfit of mine?",
-        "A promise for our future?"
+        "If you wanted to have something tommorow what would it be?", 
+        "Would you still have the Devil's pastry your mom got you?", 
+        "Something you'd want me to cook for you when we're back?",
+        "Your top 5 songs from the ones you gave me?🎵", 
+        "What’s something you’ve done recently that made you feel proud of yourself? (Because I’m definitely proud of you)✨",
+        "If you could relive one day exactly as it was, which one would it be?⏳",
+        "What is something you really want to achieve this year?🧘‍♀️", 
+        "What is a quality in yourself that you’ve started to appreciate more as you’ve gotten older?🌿",
+        "Beyond everything else, what is one thing you never want to change about who you are?💎",
+        "What’s one promise you want me to make to you today as you start this new year?"
     ];
     formDiv.innerHTML = ''; 
     questions.forEach((q, i) => {
@@ -129,6 +129,13 @@ function generateForm() {
                 <input type="text" name="q${i+1}" required placeholder="Type your answer here...">
             </div>`;
     });
+    // The special 11th "Surprise" Question
+    formDiv.innerHTML += `
+        <div class="form-group" style="margin-top: 40px; border-top: 1px dashed var(--accent-pink); padding-top: 20px;">
+            <p style="color: var(--deep-pink); font-size: 1.1rem;">11. Bonus Question: Did you know that even when you’re being 'mean,' you’re still my favorite person in the world? ❤️</p>
+            <input type="text" name="q11" value="Yes, obviously! ❤️" readonly style="background: #fff0f3; cursor: not-allowed; border-color: var(--deep-pink); color: var(--deep-pink); font-weight: bold;">
+            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">(This answer is non-negotiable! 😉)</p>
+        </div>`;
 }
 
 function submitForm() {
