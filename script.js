@@ -1,5 +1,33 @@
 const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz"; 
 
+// --- COUNTDOWN TIMER CONFIG ---
+// Set your date here: Year, Month (0-indexed, so 2 = March), Day, Hour, Min
+const targetDate = new Date(2026, 2, 30, 0, 0, 0).getTime();
+let timerDisabled = true; // SET TO FALSE TO ENABLE THE LOCK
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+    if (diff <= 0) {
+        document.getElementById('timer-display').style.display = 'none';
+        return true;
+    }
+    const h = Math.floor((diff / (1000 * 60 * 60)));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('countdown').innerText = `${h}h ${m}m ${s}s`;
+    return false;
+}
+if(!timerDisabled) setInterval(updateTimer, 1000);
+
+function handleHeartClick() {
+    if (timerDisabled || new Date().getTime() >= targetDate) {
+        switchScreen('screen1', 'screen2');
+    } else {
+        alert("Patience! The surprise unlocks at midnight. 😉");
+    }
+}
+
 const envelopeMessages = [
     "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! ❤️",
     "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, and here we are. I’m just glad I get to be 'with' you. 🥳",
@@ -34,25 +62,8 @@ function switchScreen(oldId, newId) {
     }
 }
 
-// 1. Play Map Animation
-function playMapAnimation() {
-    switchScreen('screen2', 'screen-map');
-    const video = document.getElementById('map-video');
-    if (video) {
-        video.play().catch(e => console.log("Video auto-play blocked, showing button."));
-        // Show skip button after 4 seconds (length of a typical travel clip)
-        setTimeout(() => {
-            document.getElementById('skip-map').classList.remove('hidden');
-        }, 4000);
-    } else {
-        // Fallback if video tag is missing
-        goToCakeScreen();
-    }
-}
-
-// 2. Setup Cake
 function goToCakeScreen() {
-    switchScreen('screen-map', 'screen-cake');
+    switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
     container.innerHTML = '';
     for(let i=0; i<19; i++) {
@@ -65,6 +76,112 @@ function goToCakeScreen() {
 function blowCandles() {
     document.querySelectorAll('.candle').forEach(c => c.classList.add('out'));
     document.getElementById('blow-btn').classList.add('hidden');
+    document.getElementById('cut-btn').classList.remove('hidden');
+}
+
+function cutCake() {
+    document.getElementById('cake-main').classList.add('hidden');
+    document.getElementById('candle-container').classList.add('hidden');
+    document.getElementById('cut-btn').classList.add('hidden');
+    document.getElementById('cake-slice').classList.remove('hidden');
+    document.getElementById('avatar-zone').classList.remove('hidden');
+}
+
+let sidFed = false;
+function feedPerson(person) {
+    if(person === 'siddhant') {
+        document.getElementById('bubble-sid').classList.remove('hidden');
+        sidFed = true;
+    } else if(person === 'parvani' && sidFed) {
+        document.getElementById('bubble-par').classList.remove('hidden');
+        confetti({ particleCount: 150, spread: 70 });
+        document.getElementById('to-letters-btn').classList.remove('hidden');
+    }
+}
+
+function goToLetters() {
+    switchScreen('screen-cake', 'screen3');
+    const container = document.getElementById('letter-container');
+    container.innerHTML = ''; 
+    envelopeMessages.forEach((msg, i) => {
+        setTimeout(() => {
+            const letter = document.createElement('div');
+            letter.className = 'letter-pop';
+            letter.innerHTML = '💌';
+            letter.onclick = () => openLetter(msg);
+            container.appendChild(letter);
+            if (i === envelopeMessages.length - 1) {
+                document.getElementById('quiz-trigger').classList.remove('hidden');
+            }
+        }, i * 100);
+    });
+}
+
+function openLetter(text) {
+    const modal = document.getElementById('letter-modal');
+    document.getElementById('modal-text').innerText = text;
+    modal.classList.add('modal-active');
+    modal.classList.remove('hidden');
+}
+
+function closeLetter() {
+    const modal = document.getElementById('letter-modal');
+    modal.classList.remove('modal-active');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+function generateForm() {
+    const formDiv = document.getElementById('form-content');
+    const questions = [
+        "First impression of me?", 
+        "Our best late night talk topic?", 
+        "One thing that always makes you smile about us?", 
+        "Your favorite song I recommended?", 
+        "Which city are we visiting first together?",
+        "My most annoying but cute habit?",
+        "Who is the better cook (be honest)?",
+        "The moment you knew I was special?",
+        "Favorite outfit of mine?",
+        "A promise for our future?"
+    ];
+    formDiv.innerHTML = ''; 
+    questions.forEach((q, i) => {
+        formDiv.innerHTML += `<div class="form-group"><p>${i+1}. ${q}</p><input type="text" name="q${i+1}" required></div>`;
+    });
+}
+
+function submitForm() {
+    confetti({ particleCount: 150, spread: 70 });
+    const form = document.getElementById('birthday-form');
+    fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }});
+    switchScreen('screen4', 'screen5');
+}
+
+function initMoonScroll() {
+    const scrollTrigger = document.getElementById('moon-scroll-trigger');
+    const moonShadow = document.querySelector('.moon-shadow');
+    const moonImg = document.querySelector('.glowing-moon');
+    const msgDisplay = document.getElementById('moon-message');
+    const finalCenter = document.getElementById('final-center-text');
+
+    scrollTrigger.addEventListener('scroll', () => {
+        let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
+        moonShadow.style.transform = `translateX(${(pct * 210) - 100}%)`;
+        msgDisplay.innerText = moonMessages[Math.min(Math.floor(pct * moonMessages.length), moonMessages.length - 1)];
+
+        if (pct > 0.95) {
+            moonShadow.style.display = 'none';
+            moonImg.classList.add('glowing-moon-finale');
+            finalCenter.classList.remove('hidden');
+            msgDisplay.style.opacity = '0';
+        } else {
+            moonShadow.style.display = 'block';
+            moonImg.classList.remove('glowing-moon-finale');
+            finalCenter.classList.add('hidden');
+            msgDisplay.style.opacity = '1';
+        }
+    });
+}    document.getElementById('blow-btn').classList.add('hidden');
     document.getElementById('cut-btn').classList.remove('hidden');
 }
 
