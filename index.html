@@ -1,108 +1,86 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.3">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Parvani ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;For Parvani ❤️&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="style.css"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&amp;family=Quicksand:wght@300;500;700&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen1" class="screen active"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="timer-display" class="timer-style"&gt;Unlocking in: &lt;span id="countdown"&gt;00:00:00&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="main-heart" class="heart-trigger" onclick="handleHeartClick()"&gt;❤️&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="tap-hint"&gt;Tap the heart to begin...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen2" class="screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="fade-in-text"&gt;Happy Birthday, Parvaniiiiii&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cat-decoration"&gt;🐱✨&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="next-btn" onclick="goToCakeScreen()"&gt;Next Surprise ✨&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen-cake" class="screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="fade-in-text"&gt;Make a wish! 🎂&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cake-area"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="candle-container" class="candles"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="cake-main" class="cake"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="cake-top"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="cake-bottom"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="cake-slice" class="hidden"&gt;🍰&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="interaction-zone"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="blow-btn" class="next-btn" onclick="blowCandles()"&gt;Blow out the candles!&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="cut-btn" class="next-btn hidden" onclick="cutCake()"&gt;Cut the cake! 🔪&lt;/button&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="avatar-zone" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="avatar-box" onclick="feedPerson('siddhant')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="assets/siddhant.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=S&amp;background=FFB3C1&amp;color=fff'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="bubble-sid" class="speech-bubble hidden"&gt;Yummm! Now you have some too! 😋&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="avatar-box" onclick="feedPerson('parvani')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="assets/parvani.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=P&amp;background=FFB3C1&amp;color=fff'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="bubble-par" class="speech-bubble hidden"&gt;Happy Birthday to me! ❤️&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="to-letters-btn" class="next-btn hidden" onclick="goToLetters()"&gt;Open your letters ✨&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen3" class="screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="letter-container" class="letter-wall"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="quiz-trigger" class="next-btn hidden" onclick="switchScreen('screen3', 'screen4'); generateForm();"&gt;Now, a quick quiz!&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen4" class="screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;form id="birthday-form"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="form-content"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="submit-btn" onclick="submitForm()"&gt;Finish ❤️&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen5" class="screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="night-sky"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="moon-visual-layer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="moon-message"&gt;Scroll to see the moon grow...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="moon-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="assets/moon.png" class="glowing-moon" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="moon-shadow"&gt;&lt;/div&gt;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="final-center-text" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h1&gt;Forever My Full Moon.&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;I Love You, Parvani.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="moon-scroll-trigger"&gt;&lt;div style="height: 300vh;"&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="star-field"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="letter-modal" class="modal hidden" onclick="closeLetter()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content" onclick="event.stopPropagation()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close-modal" onclick="closeLetter()"&gt;&amp;times;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="modal-text"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="script.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <div id="screen1" class="screen active">
+        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()">❤️</div>
+        <p class="tap-hint">Tap the heart to begin...</p>
+    </div>
+
+    <div id="screen2" class="screen">
+        <h1 class="fade-in-text">Happy Birthday, Parvaniiiiii</h1>
+        <div class="cat-decoration">🐱✨</div>
+        <button class="next-btn" onclick="goToCakeScreen()">Next Surprise ✨</button>
+    </div>
+
+    <div id="screen-cake" class="screen">
+        <h2 class="fade-in-text">Make a wish! 🎂</h2>
+        <div class="cake-area">
+            <div id="candle-container" class="candles"></div>
+            <div id="cake-main" class="cake"></div>
+            <div id="cake-slice" class="hidden">🍰</div>
+        </div>
+        <div id="interaction-zone">
+            <button id="blow-btn" class="next-btn" onclick="blowCandles()">Blow out the candles!</button>
+            <button id="cut-btn" class="next-btn hidden" onclick="cutCake()">Cut the cake! 🔪</button>
+            <div id="avatar-zone" class="hidden">
+                <div class="avatar-box" onclick="feedPerson('siddhant')">
+                    <img src="assets/siddhant.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=S&background=FFB3C1&color=fff'">
+                    <div id="bubble-sid" class="speech-bubble hidden">Yummm! Now you have some too! 😋</div>
+                </div>
+                <div class="avatar-box" onclick="feedPerson('parvani')">
+                    <img src="assets/parvani.png" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=P&background=FFB3C1&color=fff'">
+                    <div id="bubble-par" class="speech-bubble hidden">Happy Birthday to me! ❤️</div>
+                </div>
+            </div>
+        </div>
+        <button id="to-letters-btn" class="next-btn hidden" onclick="goToLetters()">Open your letters ✨</button>
+    </div>
+
+    <div id="screen3" class="screen">
+        <div id="letter-container" class="letter-wall"></div>
+        <button id="quiz-trigger" class="next-btn hidden" onclick="switchScreen('screen3', 'screen4'); generateForm();">Now, a quick quiz!</button>
+    </div>
+
+    <div id="screen4" class="screen">
+        <form id="birthday-form">
+            <div id="form-content"></div>
+            <button type="button" class="submit-btn" onclick="submitForm()">Finish ❤️</button>
+        </form>
+    </div>
+
+    <div id="screen5" class="screen">
+        <div class="night-sky">
+            <div class="moon-visual-layer">
+                <div id="moon-message">Scroll to see the moon grow...</div>
+                <div class="moon-wrapper">
+                    <img src="assets/moon.png" class="glowing-moon">
+                    <div class="moon-shadow"></div> 
+                </div>
+                <div id="final-center-text" class="hidden">
+                    <h1>Forever My Full Moon.</h1>
+                    <p>I Love You, Parvani.</p>
+                </div>
+            </div>
+            <div id="moon-scroll-trigger"><div style="height: 300vh;"></div></div>
+        </div>
+    </div>
+
+    <div id="letter-modal" class="modal hidden" onclick="closeLetter()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeLetter()">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
