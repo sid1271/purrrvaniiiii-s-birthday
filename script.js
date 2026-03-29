@@ -143,40 +143,39 @@ function initMoonScroll() {
     const scrollTrigger = document.getElementById('moon-scroll-trigger');
     const moonShadow = document.querySelector('.moon-shadow');
     const moonImg = document.querySelector('.glowing-moon');
-    const moonWrapper = document.querySelector('.moon-wrapper');
     const msgDisplay = document.getElementById('moon-message');
     const finalCenter = document.getElementById('final-center-text');
-    const moonMsgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
+    const moonWrapper = document.querySelector('.moon-wrapper');
 
-    // Reset scroll to top when entering the screen
-    scrollTrigger.scrollTop = 0;
+    if (!scrollTrigger || !moonShadow || !moonImg) return;
 
     scrollTrigger.addEventListener('scroll', () => {
-        let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
+        let scrollPercent = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
         
-        // 1. ZOOM: Grows from 1x to 1.5x
-        let zoom = 1 + (pct * 0.5);
-        moonWrapper.style.transform = `scale(${zoom})`;
+        // THE SHADOW FIX: Move it from -100% to 200% 
+        // 200% ensures it is miles away from the moon's surface
+        let shadowPos = (scrollPercent * 300) - 100; 
+        moonShadow.style.transform = `translateX(${shadowPos}%)`;
 
-        // 2. SHADOW: Slides across to reveal moon
-        // We use a wide range (-100 to 120) so the circular shadow fully clears
-        let moveX = (pct * 220) - 100; 
-        moonShadow.style.transform = `translateX(${moveX}%)`;
-        
-        // 3. TEXT PHASES
-        msgDisplay.innerText = moonMsgs[Math.min(Math.floor(pct * moonMsgs.length), moonMsgs.length - 1)];
-
-        // 4. FINALE
-        if (pct > 0.95) {
-            moonShadow.style.opacity = '0';
+        // THE OVERLAY KILLER:
+        if (scrollPercent > 0.95) {
+            moonShadow.style.display = 'none'; // Completely remove the black circle
             moonImg.classList.add('glowing-moon-finale');
+            moonWrapper.style.overflow = 'visible'; // Let the glow spread
             finalCenter.classList.remove('hidden');
             msgDisplay.style.opacity = '0';
         } else {
-            moonShadow.style.opacity = '1';
+            moonShadow.style.display = 'block'; // Bring it back if they scroll up
             moonImg.classList.remove('glowing-moon-finale');
+            moonWrapper.style.overflow = 'hidden';
             finalCenter.classList.add('hidden');
             msgDisplay.style.opacity = '1';
+        }
+
+        // Message logic
+        let msgIndex = Math.min(Math.floor(scrollPercent * moonMessages.length), moonMessages.length - 1);
+        if (msgDisplay.innerText !== moonMessages[msgIndex]) {
+            msgDisplay.innerText = moonMessages[msgIndex];
         }
     });
 }
