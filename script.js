@@ -138,7 +138,14 @@ function submitForm() {
     switchScreen('screen4', 'screen5');
 }
 
-// --- 6. MOON LOGIC (SMOOTH SCROLL) ---
+// --- MOON MESSAGES ---
+const moonMessages = [
+    "Every phase of you is beautiful...",
+    "The way you glow and grow...",
+    "Almost there...",
+    "My forever full moon."
+];
+
 function initMoonScroll() {
     const scrollTrigger = document.getElementById('moon-scroll-trigger');
     const moonShadow = document.querySelector('.moon-shadow');
@@ -151,22 +158,30 @@ function initMoonScroll() {
 
     scrollTrigger.addEventListener('scroll', () => {
         let scrollPercent = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
+        
+        // 1. Shadow Movement
         let shadowPos = (scrollPercent * 210) - 100;
         moonShadow.style.transform = `translateX(${shadowPos}%)`;
 
+        // 2. Message Logic (Switches through your 4 messages)
         let msgIndex = Math.min(Math.floor(scrollPercent * moonMessages.length), moonMessages.length - 1);
         if (msgDisplay.innerText !== moonMessages[msgIndex]) {
             msgDisplay.innerText = moonMessages[msgIndex];
         }
 
+        // 3. Zoom/Growth Effect
+        let zoomScale = 1.1 + (scrollPercent * 0.3); // Moon grows from 1.1 to 1.4
+        moonImg.style.transform = `scale(${zoomScale})`;
+
+        // 4. Finale Transition
         if (scrollPercent > 0.95) {
-            moonShadow.style.display = 'none';
+            moonShadow.style.opacity = '0';
             moonImg.classList.add('glowing-moon-finale');
             moonWrapper.style.overflow = 'visible';
             finalCenter.classList.remove('hidden');
             msgDisplay.style.opacity = '0';
         } else {
-            moonShadow.style.display = 'block';
+            moonShadow.style.opacity = '1';
             moonImg.classList.remove('glowing-moon-finale');
             moonWrapper.style.overflow = 'hidden';
             finalCenter.classList.add('hidden');
