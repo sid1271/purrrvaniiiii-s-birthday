@@ -46,7 +46,7 @@ let hasFedSiddhant = false;
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
-    container.innerHTML = '';
+    container.innerHTML = ''; // Clear the old "line"
     for(let i=0; i<19; i++) {
         const c = document.createElement('div');
         c.className = 'candle';
