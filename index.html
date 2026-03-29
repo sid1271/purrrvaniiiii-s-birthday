@@ -11,7 +11,7 @@
 <body>
 
     <div id="screen1" class="screen active">
-        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()">❤️</div>
+        <div id="main-heart" class="heart-trigger" onclick="handleHeartClick()" style="position: relative; z-index: 999;">❤️</div>
         <p class="tap-hint">Tap the heart to begin...</p>
     </div>
 
@@ -24,10 +24,9 @@
     <div id="screen-cake" class="screen">
         <h2 class="fade-in-text">Make a wish! 🎂</h2>
         <div class="cake-area">
+            <div id="candle-container" class="candles"></div>
             <div id="cake-main" class="cake">
-                <div id="candle-container" class="candles"></div>
-                <div class="cake-top"></div>
-                <div class="cake-bottom"></div>
+                <div class="cake-top-edge"></div>
             </div>
             <div id="cake-slice" class="hidden">🍰</div>
         </div>
