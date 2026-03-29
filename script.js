@@ -1,5 +1,6 @@
 const FORM_ENDPOINT = "https://formspree.io/f/mnjgywkz"; 
 
+// --- 1. THE LETTERS (19 total) ---
 const envelopeMessages = [
     "Okay, I'll admit it—getting to read a letter shouldn't be this complicated! But since you’ve successfully navigated my digital maze, I figured I’d start with the most important part: A very, very Happy Birthday to you, Cutie! ❤️",
     "I honestly can't believe how hectic college has been. Life has a way of throwing everything at once, doesn't it? But you pulled through, and here we are. I’m just glad I get to be 'with' you. 🥳",
@@ -22,16 +23,21 @@ const envelopeMessages = [
     "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
+// --- 2. THE NAVIGATION ---
 function switchScreen(oldId, newId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(newId).classList.add('active');
-    if(newId === 'screen5') initMoonScroll();
+    const nextScreen = document.getElementById(newId);
+    if (nextScreen) {
+        nextScreen.classList.add('active');
+        if(newId === 'screen5') initMoonScroll();
+    }
 }
 
 function handleHeartClick() {
     switchScreen('screen1', 'screen2');
 }
 
+// --- 3. CAKE LOGIC ---
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
@@ -68,6 +74,7 @@ function feedPerson(person) {
     }
 }
 
+// --- 4. LETTERS REVEAL ---
 function goToLetters() {
     switchScreen('screen-cake', 'screen3');
     const container = document.getElementById('letter-container');
@@ -79,7 +86,9 @@ function goToLetters() {
             letter.innerHTML = '💌';
             letter.onclick = () => openLetter(msg);
             container.appendChild(letter);
-            if (i === envelopeMessages.length - 1) document.getElementById('quiz-trigger').classList.remove('hidden');
+            if (i === envelopeMessages.length - 1) {
+                document.getElementById('quiz-trigger').classList.remove('hidden');
+            }
         }, i * 100);
     });
 }
@@ -97,6 +106,7 @@ function closeLetter() {
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
+// --- 5. QUIZ (FIXED TO 10 QUESTIONS) ---
 function generateForm() {
     const formDiv = document.getElementById('form-content');
     const questions = [
@@ -113,7 +123,11 @@ function generateForm() {
     ];
     formDiv.innerHTML = ''; 
     questions.forEach((q, i) => {
-        formDiv.innerHTML += `<div class="form-group"><p>${i+1}. ${q}</p><input type="text" name="q${i+1}" required></div>`;
+        formDiv.innerHTML += `
+            <div class="form-group">
+                <p>${i+1}. ${q}</p>
+                <input type="text" name="q${i+1}" required placeholder="Type your answer here...">
+            </div>`;
     });
 }
 
@@ -124,27 +138,33 @@ function submitForm() {
     switchScreen('screen4', 'screen5');
 }
 
+// --- 6. MOON LOGIC (SMOOTH SCROLL) ---
 function initMoonScroll() {
     const scrollTrigger = document.getElementById('moon-scroll-trigger');
     const moonShadow = document.querySelector('.moon-shadow');
     const moonImg = document.querySelector('.glowing-moon');
     const msgDisplay = document.getElementById('moon-message');
-    const msgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
+    const finalCenter = document.getElementById('final-center-text');
+    const moonMsgs = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
 
     scrollTrigger.addEventListener('scroll', () => {
         let pct = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
-        moonShadow.style.transform = `translateX(${(pct * 210) - 100}%)`;
-        msgDisplay.innerText = msgs[Math.min(Math.floor(pct * msgs.length), msgs.length - 1)];
+        
+        // Match the math to the new CSS shadow blur
+        let moveX = (pct * 215) - 105; 
+        moonShadow.style.transform = `translateX(${moveX}%)`;
+        
+        msgDisplay.innerText = moonMsgs[Math.min(Math.floor(pct * moonMsgs.length), moonMsgs.length - 1)];
 
-        if (pct > 0.95) {
-            moonShadow.style.display = 'none';
+        if (pct > 0.93) {
+            moonShadow.style.opacity = '0';
             moonImg.classList.add('glowing-moon-finale');
-            document.getElementById('final-center-text').classList.remove('hidden');
+            finalCenter.classList.remove('hidden');
             msgDisplay.style.opacity = '0';
         } else {
-            moonShadow.style.display = 'block';
+            moonShadow.style.opacity = '1';
             moonImg.classList.remove('glowing-moon-finale');
-            document.getElementById('final-center-text').classList.add('hidden');
+            finalCenter.classList.add('hidden');
             msgDisplay.style.opacity = '1';
         }
     });
