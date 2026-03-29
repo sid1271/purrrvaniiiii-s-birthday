@@ -148,7 +148,19 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 
 .moon-visual-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5; pointer-events: none; }
 #moon-scroll-trigger { width: 100%; height: 100vh; overflow-y: scroll; position: relative; z-index: 10; -webkit-overflow-scrolling: touch; }
-#moon-message { position: absolute; top: 15%; color: white; font-family: 'Dancing Script', cursive; font-size: 1.8rem; text-align: center; width: 80%; transition: opacity 0.5s ease; }
+#moon-message { 
+    position: absolute; 
+    top: 15%; 
+    color: white; 
+    font-family: 'Quicksand', sans-serif; /* Cleaner font for the phases */
+    font-weight: 500;
+    font-size: 1.4rem; 
+    text-align: center; 
+    width: 90%; 
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    z-index: 15;
+}
 
 .moon-wrapper { position: relative; width: 280px; height: 280px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; }
 .glowing-moon { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); display: block; border-radius: 50%; transition: all 1.5s ease; }
