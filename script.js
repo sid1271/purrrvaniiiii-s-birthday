@@ -132,7 +132,7 @@ function generateForm() {
     // The special 11th "Surprise" Question
     formDiv.innerHTML += `
         <div class="form-group" style="margin-top: 40px; border-top: 1px dashed var(--accent-pink); padding-top: 20px;">
-            <p style="color: var(--deep-pink); font-size: 1.1rem;">11. Bonus Question: Did you know that even when you’re being 'mean,' you’re still my favorite person in the world? ❤️</p>
+            <p style="color: var(--deep-pink); font-size: 1.1rem;">11. Bonus Question: Do you think you're my favorite person in the world? ❤️</p>
             <input type="text" name="q11" value="Yes, obviously! ❤️" readonly style="background: #fff0f3; cursor: not-allowed; border-color: var(--deep-pink); color: var(--deep-pink); font-weight: bold;">
             <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">(This answer is non-negotiable! 😉)</p>
         </div>`;
