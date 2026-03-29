@@ -134,35 +134,47 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     border: 2px solid #FFB3C1;
 }
 
-/* --- FIXED MOON FINALE (SOFT GLOW) --- */
+/* --- ULTIMATE MOON FINALE --- */
 .night-sky { 
     background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%); 
     width: 100vw; 
     height: 100vh; 
     position: relative; 
     overflow: hidden;
-}
-.moon-visual-layer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
+
+#moon-message {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px; /* Gives space so it's not cut off */
+    height: 1.5rem;
+    transition: opacity 0.5s ease;
+    z-index: 25;
+}
+
 .moon-wrapper { 
     position: relative; 
-    width: 250px; 
-    height: 250px; 
+    width: 220px; /* Base size */
+    height: 220px; 
     border-radius: 50%; 
     overflow: hidden; 
-    background: #000;
-    margin: 20px auto;
+    background: transparent; /* Changed to transparent to fix the black ring bug */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: transform 0.1s linear; /* For smooth zooming */
 }
+
 .glowing-moon { 
     width: 100%; 
     height: 100%; 
-    object-fit: cover; 
+    object-fit: cover;
+    display: block;
 }
+
 .moon-shadow { 
     position: absolute; 
     top: 0; 
@@ -170,23 +182,18 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     width: 100%; 
     height: 100%; 
     background: #000; 
-    /* This creates the 'feathered' soft edge of the shadow */
-    box-shadow: inset -25px 0 40px 10px #000, -10px 0 30px #000;
+    /* Softened the inset shadow to prevent the 'ring' look */
+    box-shadow: inset -20px 0 40px 5px #000, -10px 0 20px #000;
     transform: translateX(-100%); 
     z-index: 2;
 }
+
+/* THE REAL BLOOM EFFECT */
 .glowing-moon-finale { 
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #FFB3C1); 
-    transition: filter 1s ease-in-out;
+    filter: drop-shadow(0 0 25px #fff) drop-shadow(0 0 50px #FFB3C1) drop-shadow(0 0 80px #FFB3C1);
+    transition: filter 1.5s ease-in-out;
 }
-#moon-scroll-trigger { 
-    position: absolute; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow-y: scroll; 
-    z-index: 20; 
-}
+
 #final-center-text { 
     position: absolute; 
     top: 50%; 
@@ -195,20 +202,11 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     color: white; 
     font-family: 'Dancing Script'; 
     font-size: 2.2rem; 
-    width: 85%; 
-    z-index: 25; 
+    width: 90%; 
+    z-index: 30;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 2s ease;
 }
 
-/* --- MODAL (LETTERS) --- */
-.modal { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: rgba(0,0,0,0.85); 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    opacity: 0; 
-    pointer-events
+#final-center-text.visible { opacity: 1; }
