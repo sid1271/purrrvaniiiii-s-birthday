@@ -19,22 +19,25 @@ const envelopeMessages = [
     "I have the worst sleep control. Night hits and I start saying random things! Sikha do mujhe bhi? 😴🌙",
     "If you ever want to block me, DELETE that thought. I don't know the way to Room 307 via pigeon! 😂🕊️",
     "Princess toh tum ho. I'll keep increasing the effort. Log kya kahenge? Unse humein kya! ❤️",
-    "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
+    "Mala Marathi tar nahi yet, pan majhya feelings ontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
-
-// UPDATE this function to be a direct switch:
+// 1. Direct Click Handler (No conditions)
 function handleHeartClick() {
     switchScreen('screen1', 'screen2');
 }
 
-// 2. Navigation
 function switchScreen(oldId, newId) {
-    document.getElementById(oldId).classList.remove('active');
-    document.getElementById(newId).classList.add('active');
-    if(newId === 'screen5') initMoonScroll();
+    const old = document.getElementById(oldId);
+    const next = document.getElementById(newId);
+    if(old && next) {
+        old.classList.remove('active');
+        next.classList.add('active');
+        if(newId === 'screen5') initMoonScroll();
+    }
 }
 
+// 2. Navigation
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
     const container = document.getElementById('candle-container');
@@ -72,7 +75,7 @@ function feedPerson(person) {
     }
 }
 
-// 4. Letters Wall
+// 4. Letters
 function goToLetters() {
     switchScreen('screen-cake', 'screen3');
     const container = document.getElementById('letter-container');
@@ -102,7 +105,7 @@ function closeLetter() {
     setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
-// 5. Form & Moon
+// 5. Quiz & Finale
 function generateForm() {
     const formDiv = document.getElementById('form-content');
     const questions = ["Favorite memory?", "First date location?", "What you love about Bangalore?", "Favorite physical attribute?", "How much do you love me?"];
