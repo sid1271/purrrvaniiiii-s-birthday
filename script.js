@@ -21,11 +21,7 @@ function updateTimer() {
 if(!timerDisabled) setInterval(updateTimer, 1000);
 
 function handleHeartClick() {
-    if (timerDisabled || new Date().getTime() >= targetDate) {
-        switchScreen('screen1', 'screen2');
-    } else {
-        alert("Patience! The surprise unlocks at midnight. 😉");
-    }
+    switchScreen('screen1', 'screen2');
 }
 
 const envelopeMessages = [
@@ -53,12 +49,23 @@ const envelopeMessages = [
 const moonMessages = ["Every phase of you is beautiful...", "The way you grow and glow...", "Almost there, Parvani...", "My Forever Full Moon."];
 
 function switchScreen(oldId, newId) {
-    const old = document.getElementById(oldId);
-    const next = document.getElementById(newId);
-    if(old && next) {
-        old.classList.remove('active');
-        next.classList.add('active');
-        if(newId === 'screen5') initMoonScroll();
+    const oldScreen = document.getElementById(oldId);
+    const newScreen = document.getElementById(newId);
+    
+    if(oldScreen && newScreen) {
+        // Remove active class from ALL screens just to be safe
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        
+        // Add active class to the new one
+        newScreen.classList.add('active');
+        
+        // Specific logic for Moon Scroll
+        if(newId === 'screen5') {
+            initMoonScroll();
+        }
+        console.log("Successfully moved to: " + newId);
+    } else {
+        console.error("Screen ID not found: " + oldId + " or " + newId);
     }
 }
 
