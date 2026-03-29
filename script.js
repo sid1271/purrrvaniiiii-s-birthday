@@ -23,20 +23,59 @@ const envelopeMessages = [
     "Tu jashi aahes, tashich raha.... Happy Birthdayyyyyyyy 🥰❤️ (Abhi thodi thodi Marathi seekh raha hu toh bear with me please)"
 ];
 
-// --- 2. THE NAVIGATION ---
+// --- 2. THE NAVIGATION & VAULT LOCK ---
+const targetDate = new Date("March 30, 2026 00:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const heart = document.getElementById('main-heart');
+    const timerDisplay = document.getElementById('countdown-timer');
+    const hint = document.getElementById('lock-hint');
+
+    if (distance > 0) {
+        // STILL LOCKED
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (timerDisplay) timerDisplay.innerText = `${hours}h ${minutes}m ${seconds}s`;
+        heart.classList.add('heart-locked');
+        heart.onclick = null; // Disable the click
+    } else {
+        // UNLOCKED!
+        if (timerDisplay) timerDisplay.classList.add('hidden');
+        if (hint) hint.innerText = "Tap the heart to begin, Princess ✨";
+        heart.classList.remove('heart-locked');
+        heart.classList.add('heart-unlocked');
+        
+        // Re-enable the click
+        heart.onclick = function() {
+            handleHeartClick();
+        };
+    }
+}
+
+// Run the countdown every second
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
 function switchScreen(oldId, newId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     const nextScreen = document.getElementById(newId);
     if (nextScreen) {
         nextScreen.classList.add('active');
-        if(newId === 'screen5') initMoonScroll();
+        // Ensure moon logic starts if we hit the final screen
+        if(newId === 'screen5') {
+            if (typeof initMoonScroll === "function") initMoonScroll();
+        }
     }
 }
 
 function handleHeartClick() {
     switchScreen('screen1', 'screen2');
 }
-
 // --- 3. CAKE LOGIC ---
 function goToCakeScreen() {
     switchScreen('screen2', 'screen-cake');
