@@ -22,6 +22,11 @@ const envelopeMessages = [
     "Mala Marathi tar nahi yet, pan majhya feelings kontya hi bhashet tyaach rahtil. Tu jashi ahes, tashi ch raha... nehemi khush raha. Happy 19th Birthday, Princess! ❤️"
 ];
 
+// --- WAIT FOR PAGE TO LOAD COMPLETELY ---
+window.onload = function() {
+    console.log("Website Loaded and Ready! ❤️");
+};
+
 function switchScreen(oldId, newId) {
     const old = document.getElementById(oldId);
     const next = document.getElementById(newId);
@@ -32,7 +37,9 @@ function switchScreen(oldId, newId) {
     }
 }
 
+// THE HEART CLICK
 function handleHeartClick() {
+    console.log("Heart Clicked!");
     switchScreen('screen1', 'screen2');
 }
 
@@ -83,7 +90,9 @@ function goToLetters() {
             letter.innerHTML = '💌';
             letter.onclick = () => openLetter(msg);
             container.appendChild(letter);
-            if (i === envelopeMessages.length - 1) document.getElementById('quiz-trigger').classList.remove('hidden');
+            if (i === envelopeMessages.length - 1) {
+                document.getElementById('quiz-trigger').classList.remove('hidden');
+            }
         }, i * 100);
     });
 }
