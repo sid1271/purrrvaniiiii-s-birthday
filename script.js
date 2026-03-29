@@ -147,35 +147,30 @@ function initMoonScroll() {
     const finalCenter = document.getElementById('final-center-text');
     const moonWrapper = document.querySelector('.moon-wrapper');
 
-    if (!scrollTrigger || !moonShadow || !moonImg) return;
+    if (!scrollTrigger) return;
 
     scrollTrigger.addEventListener('scroll', () => {
         let scrollPercent = scrollTrigger.scrollTop / (scrollTrigger.scrollHeight - scrollTrigger.clientHeight);
-        
-        // THE SHADOW FIX: Move it from -100% to 200% 
-        // 200% ensures it is miles away from the moon's surface
-        let shadowPos = (scrollPercent * 300) - 100; 
+        let shadowPos = (scrollPercent * 210) - 100;
         moonShadow.style.transform = `translateX(${shadowPos}%)`;
 
-        // THE OVERLAY KILLER:
+        let msgIndex = Math.min(Math.floor(scrollPercent * moonMessages.length), moonMessages.length - 1);
+        if (msgDisplay.innerText !== moonMessages[msgIndex]) {
+            msgDisplay.innerText = moonMessages[msgIndex];
+        }
+
         if (scrollPercent > 0.95) {
-            moonShadow.style.display = 'none'; // Completely remove the black circle
+            moonShadow.style.display = 'none';
             moonImg.classList.add('glowing-moon-finale');
-            moonWrapper.style.overflow = 'visible'; // Let the glow spread
+            moonWrapper.style.overflow = 'visible';
             finalCenter.classList.remove('hidden');
             msgDisplay.style.opacity = '0';
         } else {
-            moonShadow.style.display = 'block'; // Bring it back if they scroll up
+            moonShadow.style.display = 'block';
             moonImg.classList.remove('glowing-moon-finale');
             moonWrapper.style.overflow = 'hidden';
             finalCenter.classList.add('hidden');
             msgDisplay.style.opacity = '1';
-        }
-
-        // Message logic
-        let msgIndex = Math.min(Math.floor(scrollPercent * moonMessages.length), moonMessages.length - 1);
-        if (msgDisplay.innerText !== moonMessages[msgIndex]) {
-            msgDisplay.innerText = moonMessages[msgIndex];
         }
     });
 }
